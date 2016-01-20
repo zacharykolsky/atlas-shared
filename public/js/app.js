@@ -60,9 +60,17 @@ function getAllPoints(){
 function addToTripList(trip){
   var trips = document.querySelector(".trips");
   var container = document.createElement("div");
+  var tID = document.createAttribute("data-trip-id");
+  tID.value = trip._id;
+  container.setAttributeNode(tID);
   container.className = "trip";
   container.className = 'trip-container';
   container.innerHTML = trip.title+"<br>"+trip.locale+"<br>"+trip.desc;
+  container.addEventListener("click", function(){
+    $(".selected").removeClass("selected");
+    $(this).addClass("selected");
+    getTripPoints(trip._id)
+  })
   trips.appendChild(container);
 }
 
@@ -75,7 +83,19 @@ function getAllTrips(){
     })
 }
 
+function getTripPoints(tripId){
+  $.getJSON("http://localhost:3000/locations/"+tripId+".json")
+    .then(function(points){
+      feats.clearLayers();
+      points.forEach(function(point){
+        addToFeats(point);
+      })
+    })
+}
+
 function popupSubmit(params){
+  var tripId = $(".selected").attr("data-trip-id");
+  params.tripId = tripId;
   return $.ajax({
     method:"post",
     data:params,
@@ -95,6 +115,7 @@ function tripSubmit(params){
     url:"http://localhost:3000/trips.json"
   }).then(function(data){
     addToTripList(data);
+    $(".trip-form input").val("");
   })
 }
 

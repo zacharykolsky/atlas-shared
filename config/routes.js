@@ -7,6 +7,9 @@ router.route("/locations.json")
   .get(locationsController.getLocations)
   .post(locationsController.addLocation)
 
+router.route("/locations/:id.json")
+  .get(tripsController.getTrip)
+
 router.route("/trips.json")
   .get(tripsController.getTrips)
   .post(tripsController.addTrip)

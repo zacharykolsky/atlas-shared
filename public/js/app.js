@@ -18,19 +18,14 @@ map.on("click", function(evt){
 function makeForm(latlng){
   var form = document.createElement("div");
   form.className = "popup-form";
-  var name = document.createElement("input");
-  name.type = "text";
-  name.name = "createdBy";
-  form.appendChild(name);
+  var createdBy = document.createElement("input");
+  createdBy.type = "text";
+  createdBy.name = "createdBy";
+  form.appendChild(createdBy);
   var desc = document.createElement("input");
   desc.type = "text";
   desc.name = "desc";
   form.appendChild(desc);
-  var coords = document.createElement("input");
-  coords.type = "hidden";
-  coords.value = latlng.join(",");
-  coords.name = "coords";
-  form.appendChild(coords);
   var button = document.createElement("button")
   button.type="submit";
   button.className="popup-form-submit";
@@ -39,12 +34,27 @@ function makeForm(latlng){
   button.addEventListener("click", function(){
     var params = {
       coords: latlng,
-      name: name.value,
+      createdBy: createdBy.value,
       desc: desc.value
     }
     formSubmit(params);
   })
   return form;
+}
+
+function addToFeats(point){
+  var marker = L.marker(point.coords)
+                  .bindPopup(point.desc)
+                  .addTo(feats);
+}
+
+function getAllPoints(){
+  $.getJSON("http://localhost:3000/locations.json")
+    .then(function(points){
+      points.forEach(function(point){
+        addToFeats(point);
+      })
+    })
 }
 
 function formSubmit(params){
@@ -54,6 +64,11 @@ function formSubmit(params){
     dataType:"json",
     url:"http://localhost:3000/locations.json"
   }).then(function(data){
-    console.log(data)
+    addToFeats(data);
+    pending.clearLayers();
   })
 }
+
+$(document).ready(function(){
+  getAllPoints();
+})

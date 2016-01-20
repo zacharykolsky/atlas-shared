@@ -7,7 +7,6 @@ var controller = {
     })
   },
   addLocation: function(req,res){
-    console.log(req.body)
     var newLoc = new Location(req.body);
     newLoc.save(function(err){
       res.json(newLoc)

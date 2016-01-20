@@ -1,4 +1,3 @@
-//initialize mapbox and map
 L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhc2VncnViZXIiLCJhIjoidV9tdHNYSSJ9.RRyvDLny4YwDwzPCeOJZrA';
 var map = L.mapbox.map('map', 'mapbox.satellite');
 
@@ -9,7 +8,7 @@ map.on("click", function(evt){
   pending.clearLayers();
   var coords = [evt.latlng.lat,evt.latlng.lng];
   var popup = makeForm(coords);
-  var marker = L.marker(coords)
+  var marker = L.marker(coords, {draggable:true})
                   .bindPopup(popup)
                   .addTo(pending);
   marker.openPopup();
@@ -28,6 +27,7 @@ function makeForm(latlng){
   form.appendChild(desc);
   var button = document.createElement("button")
   button.type="submit";
+  button.textContent = "submit";
   button.className="popup-form-submit";
   form.appendChild(button);
 
@@ -37,7 +37,7 @@ function makeForm(latlng){
       createdBy: createdBy.value,
       desc: desc.value
     }
-    formSubmit(params);
+    popupSubmit(params);
   })
   return form;
 }
@@ -57,7 +57,7 @@ function getAllPoints(){
     })
 }
 
-function formSubmit(params){
+function popupSubmit(params){
   return $.ajax({
     method:"post",
     data:params,
@@ -68,6 +68,27 @@ function formSubmit(params){
     pending.clearLayers();
   })
 }
+
+function tripSubmit(params){
+  return $.ajax({
+    method:"post",
+    data:params,
+    dataType:"json",
+    url:"http://localhost:3000/locations.json"
+  }).then(function(data){
+    addToFeats(data);
+    pending.clearLayers();
+  })
+}
+
+$(".trip-form button").on("click", function(){
+  var params = {
+    locale: $(".trip-form input[name=locale]").val(),
+    title: $(".trip-form input[name=title]").val(),
+    desc: $(".trip-form input[name=desc]").val()
+  }
+  tripSubmit(params);
+})
 
 $(document).ready(function(){
   getAllPoints();

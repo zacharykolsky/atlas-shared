@@ -11,4 +11,14 @@ var LocationSchema = new Schema({
   desc: String
 })
 
+var TripSchema = new Schema({
+  createdAt: Date,
+  createdBy: String,
+  title:String,
+  desc:String,
+  locale:String,
+  places: []
+})
+
 mongoose.model("Location", LocationSchema);
+mongoose.model("Trip", TripSchema);

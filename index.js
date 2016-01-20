@@ -1,10 +1,8 @@
 var express = require("express")
 var app = express();
+var router = require("./config/routes");
 
-app.get("/", function(req,res){
-  console.log("slash route requested")
-  res.send("HELLOWOWOW")
-})
+app.use(router)
 
 app.listen(3000, function(){
   console.log("app listening on 3000")

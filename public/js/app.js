@@ -57,6 +57,24 @@ function getAllPoints(){
     })
 }
 
+function addToTripList(trip){
+  var trips = document.querySelector(".trips");
+  var container = document.createElement("div");
+  container.className = "trip";
+  container.className = 'trip-container';
+  container.innerHTML = trip.title+"<br>"+trip.locale+"<br>"+trip.desc;
+  trips.appendChild(container);
+}
+
+function getAllTrips(){
+  $.getJSON("http://localhost:3000/trips.json")
+    .then(function(trips){
+      trips.forEach(function(trip){
+        addToTripList(trip);
+      })
+    })
+}
+
 function popupSubmit(params){
   return $.ajax({
     method:"post",
@@ -74,10 +92,9 @@ function tripSubmit(params){
     method:"post",
     data:params,
     dataType:"json",
-    url:"http://localhost:3000/locations.json"
+    url:"http://localhost:3000/trips.json"
   }).then(function(data){
-    addToFeats(data);
-    pending.clearLayers();
+    addToTripList(data);
   })
 }
 
@@ -92,4 +109,5 @@ $(".trip-form button").on("click", function(){
 
 $(document).ready(function(){
   getAllPoints();
+  getAllTrips();
 })

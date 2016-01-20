@@ -1,0 +1,24 @@
+*{margin:0;box-sizing:border-box}
+#map{
+  float:right;
+  height:100vh;
+  width:75vw;
+}
+input{
+  display:block;
+  width:100%;
+}
+.trips{
+  position:absolute;
+  top:0;
+  left:0;
+  width:25vw;
+  height:100vh;
+  background: white;
+}
+.trip-container{
+  background: white;
+}
+.trip-container:nth-child(even){
+  background:gray;
+}

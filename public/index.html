@@ -6,24 +6,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
   <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
-  <style>
-    *{margin:0;box-sizing:border-box}
-    #map{
-      height:100vh;
-      width:100vw;
-    }
-    .popup-form input{
-      display:block;
-    }
-    .trip-form{
-      position:absolute;
-      right:10px;
-      top:10px;
-    }
-    .trip-form input{
-      display:block;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div id="map"></div>
@@ -31,7 +14,7 @@
     <div class='trip-form'>
       <input type="text" name="title" placeholder="trip title">
       <input type="textarea" name="desc" placeholder="add desc" maxlength="140" >
-      <input type="text" name="locale">
+      <input type="text" name="locale" placeholder="locale">
       <button type="submit" class="trip-submit">submit</button>
     </div>
   </div>

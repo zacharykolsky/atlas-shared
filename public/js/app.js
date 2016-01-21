@@ -2,12 +2,21 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhc2VncnViZXIiLCJhIjoidV9tdHNYSSJ9.RRyvDLny
 var map = L.mapbox.map('map', 'mapbox.satellite');
 
 var geocoderOptions = {
-  markers:false
+  // markers:false
 }
 
 var geocoder = L.control.geocoder('search-R7-i3bQ',geocoderOptions).addTo(map);
 geocoder.on("select", function(e){
-  console.log(e)
+  $.getJSON("http://localhost:3000/checkPlace?q="+e.feature.properties.label)
+    .then(function(result){
+      console.log(result)
+      var sw = result.bounds.southwest;
+      var ne = result.bounds.northeast;
+      var southWest = L.latLng(sw.lat, sw.lng),
+           northEast = L.latLng(ne.lat, ne.lng),
+           bounds = L.latLngBounds(southWest, northEast);
+      map.fitBounds(bounds)
+    })
 })
 
 var feats = L.featureGroup().addTo(map);
@@ -122,26 +131,26 @@ function popupSubmit(params){
   })
 }
 
-// function tripSubmit(params){
-//   return $.ajax({
-//     method:"post",
-//     data:params,
-//     dataType:"json",
-//     url:"http://localhost:3000/trips.json"
-//   }).then(function(data){
-//     addToTripList(data);
-//     $(".trip-form input").val("");
-//   })
-// }
-//
-// $(".trip-form button").on("click", function(){
-//   var params = {
-//     locale: $(".trip-form input[name=locale]").val(),
-//     title: $(".trip-form input[name=title]").val(),
-//     desc: $(".trip-form input[name=desc]").val()
-//   }
-//   tripSubmit(params);
-// })
+function tripSubmit(params){
+  return $.ajax({
+    method:"post",
+    data:params,
+    dataType:"json",
+    url:"http://localhost:3000/trips.json"
+  }).then(function(data){
+    addToTripList(data);
+    $(".trip-form input").val("");
+  })
+}
+
+$(".trip-form button").on("click", function(){
+  var params = {
+    locale: $(".trip-form input[name=locale]").val(),
+    title: $(".trip-form input[name=title]").val(),
+    desc: $(".trip-form input[name=desc]").val()
+  }
+  tripSubmit(params);
+})
 
 $(document).ready(function(){
   getAllPoints();

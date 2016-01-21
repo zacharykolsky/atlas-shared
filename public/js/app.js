@@ -1,7 +1,14 @@
 L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhc2VncnViZXIiLCJhIjoidV9tdHNYSSJ9.RRyvDLny4YwDwzPCeOJZrA';
 var map = L.mapbox.map('map', 'mapbox.satellite');
 
-var geocoder = L.control.geocoder('search-R7-i3bQ').addTo(map);
+var geocoderOptions = {
+  markers:false
+}
+
+var geocoder = L.control.geocoder('search-R7-i3bQ',geocoderOptions).addTo(map);
+geocoder.on("select", function(e){
+  console.log(e)
+})
 
 var feats = L.featureGroup().addTo(map);
 var pending = L.featureGroup().addTo(map);
@@ -53,6 +60,7 @@ function addToFeats(point){
 function getAllPoints(){
   $.getJSON("http://localhost:3000/locations.json")
     .then(function(points){
+      feats.clearLayers();
       points.forEach(function(point){
         addToFeats(point);
       })
@@ -69,9 +77,14 @@ function addToTripList(trip){
   container.className = 'trip-container';
   container.innerHTML = trip.title+"<br>"+trip.locale+"<br>"+trip.desc;
   container.addEventListener("click", function(){
-    $(".selected").removeClass("selected");
-    $(this).addClass("selected");
-    getTripPoints(trip._id)
+    if ($(this).hasClass("selected")){
+      $(this).removeClass("selected");
+      getAllPoints();
+    }else{
+      $(".selected").removeClass("selected");
+      $(this).addClass("selected");
+      getTripPoints(trip._id)
+    }
   })
   trips.appendChild(container);
 }

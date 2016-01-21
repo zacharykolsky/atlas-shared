@@ -1,21 +1,29 @@
 *{margin:0;box-sizing:border-box}
+header{border:1px solid red;}
+main{border:1px solid green;}
+footer{border:1px solid black;}
 #map{
   float:right;
-  height:100vh;
-  width:75vw;
+  height:70vh;
+  width:100vw;
 }
-input{
-  display:block;
+.cf:after{
+  content:'';
+  display:table;
+  clear:both;
+}
+.trip-form{
   width:100%;
-  line-height: 16px;
 }
 .trips{
-  position:absolute;
-  top:0;
-  left:0;
-  width:25vw;
-  height:100vh;
-  background: white;
+  width:65%;
+}
+.tips{
+  width:35%;
+}
+.container{
+  float:left;
+  border:1px solid blue;
 }
 .trip-container{
   padding:10px;

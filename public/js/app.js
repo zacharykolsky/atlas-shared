@@ -1,21 +1,34 @@
 L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhc2VncnViZXIiLCJhIjoidV9tdHNYSSJ9.RRyvDLny4YwDwzPCeOJZrA';
-var map = L.mapbox.map('map', 'mapbox.satellite');
+var map = L.mapbox.map('map', 'mapbox.streets');
 
 var geocoderOptions = {
-  // markers:false
+  bounds: true,
+  marker: false,
+  layers: 'coarse',
+  expanded:true
 }
 
 var geocoder = L.control.geocoder('search-R7-i3bQ',geocoderOptions).addTo(map);
+
+// console.log(geocoder.getContainer())
+var geocontainer = document.getElementById("geocontainer")
+geocontainer.appendChild(geocoder.getContainer());
+
+geocoder.on("results", function(e){
+  console.log(e)
+})
+
 geocoder.on("select", function(e){
+  var geo = this;
   $.getJSON("http://localhost:3000/checkPlace?q="+e.feature.properties.label)
     .then(function(result){
-      console.log(result)
       var sw = result.bounds.southwest;
       var ne = result.bounds.northeast;
       var southWest = L.latLng(sw.lat, sw.lng),
            northEast = L.latLng(ne.lat, ne.lng),
            bounds = L.latLngBounds(southWest, northEast);
       map.fitBounds(bounds)
+      geo.options.bounds = bounds;
     })
 })
 

@@ -15,7 +15,15 @@ input{
   width:100%;
 }
 div{
-  border:1px solid red;
+  /*border:1px solid red;*/
+}
+#geocontainer{
+  position:relative;
+  display:block;
+  border:1px solid green;
+}
+.leaflet-pelias-results{
+  top:45px;
 }
 .trip-container{
   padding:10px;

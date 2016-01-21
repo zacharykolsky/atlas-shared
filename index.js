@@ -1,7 +1,12 @@
-var express = require("express")
-var app = express();
 var bodyParser = require("body-parser");
+var hbs = require("hbs");
+
+var express = require("express")
 var router = require("./config/routes");
+var app = express();
+
+app.set('view engine', 'hbs');
+app.set("views","./views");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));

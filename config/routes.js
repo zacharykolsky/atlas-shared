@@ -14,6 +14,16 @@ router.route("/trips.json")
 router.route("/trips/:id.json")
   .get(tripsController.getTrip)
 
+router.route("/")
+  .get(function(req,res){
+    res.render("index.hbs")
+  })
+
+router.route("/login")
+  .get(function(req,res){
+    res.render("login.hbs")
+  })
+
 // router.route("/trips/:id.json")
 //   .get(tripsController.showTrip)
 //   .put(tripsController.updateTrip)

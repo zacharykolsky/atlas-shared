@@ -3,16 +3,16 @@ header{border:1px solid red;}
 main{border:1px solid green;}
 footer{border:1px solid black;}
 #map{
-  float:right;
+  /*float:right;*/
   height:70vh;
-  width:100vw;
+  width:100%;
 }
 .cf:after{
   content:'';
   display:table;
   clear:both;
 }
-.trip-form{
+/*.trip-form{
   width:100%;
 }
 .trips{
@@ -20,9 +20,9 @@ footer{border:1px solid black;}
 }
 .tips{
   width:35%;
-}
+}*/
 .container{
-  float:left;
+  /*float:left;*/
   border:1px solid blue;
 }
 .trip-container{

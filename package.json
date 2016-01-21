@@ -12,6 +12,7 @@
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
     "fs": "0.0.2",
+    "hbs": "^4.0.0",
     "mongoose": "^4.3.6",
     "node-geocoder": "^3.6.2",
     "search-osm-geocode": "0.0.8"

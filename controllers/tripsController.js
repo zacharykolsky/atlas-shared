@@ -2,6 +2,7 @@ var Trip = require("../models/trip")
 var Location = require("../models/location")
 
 var controller = {
+  //Trip CRUD
   getTrips:function(req,res){
     Trip.find({}, function(err,docs){
       res.json(docs)
@@ -9,8 +10,8 @@ var controller = {
   },
   getTrip:function(req,res){
     Trip.findById(req.params.id,function(err,doc){
-      Location.find({'_id': {$in: doc.places}}).then(function(places){
-        res.json(places)
+      Location.find({'_id': {$in: doc.locations}}).then(function(locations){
+        res.json(locations)
       })
     })
   },

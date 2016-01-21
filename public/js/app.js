@@ -99,7 +99,7 @@ function getAllTrips(){
 }
 
 function getTripPoints(tripId){
-  $.getJSON("http://localhost:3000/locations/"+tripId+".json")
+  $.getJSON("http://localhost:3000/trips/"+tripId+".json")
     .then(function(points){
       feats.clearLayers();
       points.forEach(function(point){

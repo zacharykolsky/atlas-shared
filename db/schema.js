@@ -11,14 +11,22 @@ var LocationSchema = new Schema({
   desc: String
 })
 
+var ProtipSchema = new Schema({
+  createdAt: Date,
+  createdBy: String,
+  protip:String
+})
+
 var TripSchema = new Schema({
   createdAt: Date,
   createdBy: String,
   title:String,
   desc:String,
   locale:String,
-  places: []
+  locations: [],
+  protips:[]
 })
 
 mongoose.model("Location", LocationSchema);
 mongoose.model("Trip", TripSchema);
+mongoose.model("Protip", ProtipSchema)

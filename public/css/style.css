@@ -3,7 +3,6 @@ header{border:1px solid red;}
 main{border:1px solid green;}
 footer{border:1px solid black;}
 #map{
-  /*float:right;*/
   height:70vh;
   width:100%;
 }
@@ -12,18 +11,11 @@ footer{border:1px solid black;}
   display:table;
   clear:both;
 }
-/*.trip-form{
+input{
   width:100%;
 }
-.trips{
-  width:65%;
-}
-.tips{
-  width:35%;
-}*/
-.container{
-  /*float:left;*/
-  border:1px solid blue;
+div{
+  border:1px solid red;
 }
 .trip-container{
   padding:10px;

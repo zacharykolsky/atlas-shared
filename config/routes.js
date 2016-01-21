@@ -24,6 +24,16 @@ router.route("/login")
     res.render("login.hbs")
   })
 
+router.route("/trips/:id")
+  .get(function(req,res){
+    res.render("show.hbs")
+  })
+  // .get(tripsController.getTrip)
+  // .post(tripsController.addTrip)
+
+//router.route("/logout")
+//router.route("/auth/facebook")
+
 // router.route("/trips/:id.json")
 //   .get(tripsController.showTrip)
 //   .put(tripsController.updateTrip)

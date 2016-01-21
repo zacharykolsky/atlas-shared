@@ -1,6 +1,8 @@
 L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhc2VncnViZXIiLCJhIjoidV9tdHNYSSJ9.RRyvDLny4YwDwzPCeOJZrA';
 var map = L.mapbox.map('map', 'mapbox.satellite');
 
+var geocoder = L.control.geocoder('search-R7-i3bQ').addTo(map);
+
 var feats = L.featureGroup().addTo(map);
 var pending = L.featureGroup().addTo(map);
 

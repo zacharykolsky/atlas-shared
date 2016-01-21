@@ -1,8 +1,8 @@
-var express = require("express")
-var app = express();
-var passport       = require("passport");
-var bodyParser = require("body-parser");
-var router = require("./config/routes");
+var express     = require("express")
+var app         = express();
+var passport    = require("passport");
+var bodyParser  = require("body-parser");
+var router      = require("./config/routes");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -19,3 +19,5 @@ app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   next();
 });
+
+app.use(router);

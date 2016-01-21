@@ -3,7 +3,7 @@ var bodyParser          = require('body-parser');
 var methodOverride      = require('method-override');
 var passport            = require('passport');
 
-var usersController     = require('../controllers/usersController');
+var usersController     = require('../controllers/userController');
 var locationsController = require('../controllers/locationsController');
 var router              = express.Router();
 
@@ -13,16 +13,16 @@ router.route('/locations.json')
 
 router.get('/auth/validate', usersController.validateUser);
 
-// router.route('/signup')
-//   .get(usersController.getSignup)
-//   .post(usersController.postSignup);
-//
-// router.route('/login')
-//   .get(usersController.getLogin)
-//   .post(usersController.postLogin);
-//
-// router.route("/logout")
-//   .get(usersController.getLogout);
+router.route('/signup')
+  .get(usersController.getSignup)
+  .post(usersController.postSignup);
+
+router.route('/login')
+  .get(usersController.getLogin)
+  .post(usersController.postLogin);
+
+router.route("/logout")
+  .get(usersController.getLogout);
 
 // Facebook login
 router.route('/auth/facebook')
@@ -36,8 +36,8 @@ router.route('/auth/facebook/callback')
 
 router.get("/user/index.:format?", usersController.getUserIndex);
 router.get("/user/:id.:format?", usersController.getUserShow);
-// router.delete("/user/:id", usersController.deleteUserProfile);
-// router.patch("/user/:id", usersController.patchUserEdit);
+router.delete("/user/:id", usersController.deleteUserProfile);
+router.patch("/user/:id", usersController.patchUserEdit);
 router.get("/user/:id/edit", usersController.getUserEdit);
 
 

@@ -1,0 +1,28 @@
+{
+  "name": "map-play",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Chase Gruber <chasegruber@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/cpgruber/map-db",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.9",
+    "mapbox.js": "~2.2.4",
+    "angular-ui-router": "~0.2.15",
+    "angular-resource": "~1.4.9",
+    "leaflet-geocoder-mapzen": "~1.4.1",
+    "skeleton": "~2.0.4"
+  }
+}

@@ -1,3 +1,5 @@
 node_modules
+bower_components
+public/components
 ./env.js
 ./public/js/env.js

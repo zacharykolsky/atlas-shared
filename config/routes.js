@@ -6,33 +6,15 @@ var request = require("request")
 
 var router = express.Router();
 
-// http://api.opencagedata.com/geocode/v1/json?query=peru&key=8e4bf5594bb6317b4fc2dac165fa2fd3
+// router.route("/locations.:format?")
+//   .get(locationsController.getLocations)
+//   .post(locationsController.addLocation)
 
-// var geocoderProvider = 'opencage';
-// var httpAdapter = 'http';
-// // optionnal
-// var extra = {
-//     apiKey: '8e4bf5594bb6317b4fc2dac165fa2fd3', // for Mapquest, OpenCage, Google Premier
-//     formatter: null         // 'gpx', 'string', ...
-// };
-//
-// var geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra);
-//
-// // Using callback
-// geocoder.geocode(place, function(err, res) {
-//     console.log(res);
-// });
-
-
-router.route("/locations.json")
-  .get(locationsController.getLocations)
-  .post(locationsController.addLocation)
-
-router.route("/trips.json")
+router.route("/trips.:format?")
   .get(tripsController.getTrips)
   .post(tripsController.addTrip)
 
-router.route("/trips/:id.json")
+router.route("/trips/:id.:format?")
   .get(tripsController.getTrip)
 
 router.route("/")
@@ -64,10 +46,6 @@ router.route("/login")
     res.render("login.hbs")
   })
 
-router.route("/trips/:id")
-  .get(function(req,res){
-    res.render("show.hbs")
-  })
   // .get(tripsController.getTrip)
   // .post(tripsController.addTrip)
 

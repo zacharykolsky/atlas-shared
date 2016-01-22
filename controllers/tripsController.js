@@ -2,23 +2,28 @@ var Trip = require("../models/trip")
 var Location = require("../models/location")
 
 var controller = {
-  //Trip CRUD
   getTrips:function(req,res){
     Trip.find({}, function(err,docs){
-      res.json(docs)
+      if (req.params.format){
+        res.json(docs)
+      }else{
+        res.render("index.hbs", {trips:docs})
+      }
     })
   },
   getTrip:function(req,res){
     Trip.findById(req.params.id,function(err,doc){
       Location.find({'_id': {$in: doc.locations}}).then(function(locations){
-        res.json(locations)
+        res.json(doc)
       })
     })
   },
   addTrip:function (req,res){
     var newTrip = new Trip(req.body);
     newTrip.save(function(err){
-      res.json(newTrip)
+      res.redirect("/trips/"+newTrip._id)
+      // res.render("show.hbs",{trip:newTrip})
+      // res.json(newTrip)
     })
   }
 }

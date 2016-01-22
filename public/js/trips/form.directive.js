@@ -23,7 +23,7 @@
         }
         scope.update = function(){
           scope.trip.$update({id: scope.trip._id}, function(response){
-            $state.go("tripsShow", {id: response._id}, {reload: true});
+            $state.go("tripsShow", {id: response._id}, {reload: false});
           });
         }
         scope.delete = function(){
@@ -32,7 +32,7 @@
           });
         }
         scope.cancel = function(){
-          $state.go("tripsShow", {id: response._id}, {reload: true});
+          $state.go("tripsIndex", {}, {reload: true});
         }
       }
     }

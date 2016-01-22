@@ -1,0 +1,30 @@
+<form name="tripForm">
+  <fieldset>
+    <label for="type">Trip Name:</label>
+    <input required type="text" name="type" data-ng-model="trip.title" placeholder="Trip title"/>
+    <!-- <span class='invalid' data-ng-show="tripForm.type.$dirty && tripForm.type.$invalid">
+      <span data-ng-show="tripForm.type.$error.required">Type is required.</span>
+    </span> -->
+  </fieldset>
+  <fieldset>
+    <label for="type">Trip Description:</label>
+    <input required type="text" name="type" data-ng-model="trip.desc" placeholder="Trip description"/>
+    <!-- <span class='invalid' data-ng-show="tripForm.type.$dirty && tripForm.type.$invalid">
+      <span data-ng-show="tripForm.type.$error.required">Type is required.</span>
+    </span> -->
+  </fieldset>
+  <fieldset>
+    <label for="type">Trip Locale:</label>
+    <input required type="text" name="type" data-ng-model="trip.locale" placeholder="Trip locale"/>
+    <!-- <span class='invalid' data-ng-show="tripForm.type.$dirty && tripForm.type.$invalid">
+      <span data-ng-show="tripForm.type.$error.required">Type is required.</span>
+    </span> -->
+  </fieldset>
+
+  <button type="button" data-ng-if="!trip._id" data-ng-click="create()" ng-disabled="tripForm.$invalid">Create</button>
+  <div data-ng-if="trip._id">
+    <button type="button" data-ng-click="cancel()">cancel</button>
+    <button type="button" ng-disabled="tripForm.$invalid" data-ng-click="update()">Update</button>
+    <button type="button" data-ng-click="delete()">Delete</button>
+  </div>
+</form>

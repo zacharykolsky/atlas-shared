@@ -9,6 +9,11 @@ var router = express.Router();
 // router.route("/locations.:format?")
 //   .get(locationsController.getLocations)
 //   .post(locationsController.addLocation)
+//
+// router.route("/locations/:id.:format?")
+//   .get(locationsController.getLocation)
+//   .put(locationsController.updateLocation)
+//   .delete(locationsController.deleteLocation)
 
 router.route("/trips.:format?")
   .get(tripsController.getTrips)
@@ -18,6 +23,15 @@ router.route("/trips/:id.:format?")
   .get(tripsController.getTrip)
   .put(tripsController.updateTrip)
   .delete(tripsController.deleteTrip)
+
+router.route("/trips/:id/locations.:format?")
+  .get(tripsController.getTripLocations)
+  .post(tripsController.addTripLocation)
+
+// router.route("/trips/:tripId/locations/:id.:format?")
+//   .get(tripsController.getTripLocation)
+//   .put(tripsController.updateTripLocation)
+//   .delete(tripsController.deleteTripLocation)
 
 router.route("/")
   .get(function(req,res){

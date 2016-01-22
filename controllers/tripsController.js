@@ -1,4 +1,5 @@
 var Trip = require("../models/trip")
+var Locations = require("../models/location")
 
 var controller = {
   getTrips:function(req,res){
@@ -38,6 +39,28 @@ var controller = {
       if(!err){
         res.json({deleted:true})
       }
+    })
+  },
+  getTripLocations:function(req,res){
+    Trip.findById(req.params.id,function(err,trip){
+      Location.find({'_id': {$in: trip.locations}}).then(function(places){
+        res.json(places)
+      })
+    })
+  },
+  addTripLocation:function(req,res){
+    Trip.findById(req.params.id,function(err,trip){
+      newLoc = new Location(req.params.body)
+      newLoc.save(function(err,loc){
+        if(!err){
+          trip.locations.push(doc._id)
+          trip.save(function(err,doc){
+            if(!err){
+              res.json(loc)
+            }
+          })
+        }
+      })
     })
   }
 }

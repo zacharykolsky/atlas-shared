@@ -4,7 +4,8 @@
   angular
   .module("atlas", [
     "ui.router",
-    "trips"
+    "trips",
+    "locations"
   ])
   .config([
     "$stateProvider",

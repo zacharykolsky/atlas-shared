@@ -16,6 +16,8 @@ router.route("/trips.:format?")
 
 router.route("/trips/:id.:format?")
   .get(tripsController.getTrip)
+  .put(tripsController.updateTrip)
+  .delete(tripsController.deleteTrip)
 
 router.route("/")
   .get(function(req,res){

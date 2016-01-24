@@ -1,1 +1,9 @@
-<a href="/auth/facebook">Login with Facebook</a>
+<h2>Login</h2>
+
+{{#if message}}
+  <div class="alert alert-danger">{{message}}</div>
+{{/if}}
+
+<form method="post" action="/login">
+  <p><a class="btn btn-primary" href="/auth/facebook">Login using Facebook</a></p>
+</form>

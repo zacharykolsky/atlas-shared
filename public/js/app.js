@@ -3,36 +3,36 @@ var map = L.mapbox.map('map', 'mapbox.satellite');
 
 var geocoderOptions = {
   // markers:false
-}
+};
 
 var geocoder = L.control.geocoder('search-R7-i3bQ',geocoderOptions).addTo(map);
 geocoder.on("select", function(e){
   $.getJSON("http://localhost:3000/checkPlace?q="+e.feature.properties.label)
     .then(function(result){
-      console.log(result)
+      console.log(result);
       var sw = result.bounds.southwest;
       var ne = result.bounds.northeast;
       var southWest = L.latLng(sw.lat, sw.lng),
            northEast = L.latLng(ne.lat, ne.lng),
            bounds = L.latLngBounds(southWest, northEast);
-      map.fitBounds(bounds)
-    })
-})
+      map.fitBounds(bounds);
+    });
+});
 
 var feats = L.featureGroup().addTo(map);
 var pending = L.featureGroup().addTo(map);
 
-map.on("click", function(evt){
+map.on("click", function(evt) {
   pending.clearLayers();
-  var coords = [evt.latlng.lat,evt.latlng.lng];
+  var coords = [evt.latlng.lat, evt.latlng.lng];
   var popup = makeForm(coords);
   var marker = L.marker(coords, {draggable:true})
                   .bindPopup(popup)
                   .addTo(pending);
   marker.openPopup();
-})
+});
 
-function makeForm(latlng){
+function makeForm(latlng) {
   var form = document.createElement("div");
   form.className = "popup-form";
   var createdBy = document.createElement("input");
@@ -43,37 +43,37 @@ function makeForm(latlng){
   desc.type = "text";
   desc.name = "desc";
   form.appendChild(desc);
-  var button = document.createElement("button")
+  var button = document.createElement("button");
   button.type="submit";
   button.textContent = "submit";
   button.className="popup-form-submit";
   form.appendChild(button);
 
-  button.addEventListener("click", function(){
+  button.addEventListener("click", function() {
     var params = {
       coords: latlng,
       createdBy: createdBy.value,
       desc: desc.value
-    }
+    };
     popupSubmit(params);
-  })
+  });
   return form;
 }
 
-function addToFeats(point){
+function addToFeats(point) {
   var marker = L.marker(point.coords)
-                  .bindPopup(point.desc)
-                  .addTo(feats);
+    .bindPopup(point.desc)
+    .addTo(feats);
 }
 
-function getAllPoints(){
+function getAllPoints() {
   $.getJSON("http://localhost:3000/locations.json")
     .then(function(points){
       feats.clearLayers();
       points.forEach(function(point){
         addToFeats(point);
-      })
-    })
+      });
+    });
 }
 
 function addToTripList(trip){
@@ -92,9 +92,9 @@ function addToTripList(trip){
     }else{
       $(".selected").removeClass("selected");
       $(this).addClass("selected");
-      getTripPoints(trip._id)
+      getTripPoints(trip._id);
     }
-  })
+  });
   trips.appendChild(container);
 }
 
@@ -103,8 +103,8 @@ function getAllTrips(){
     .then(function(trips){
       trips.forEach(function(trip){
         addToTripList(trip);
-      })
-    })
+      });
+    });
 }
 
 function getTripPoints(tripId){
@@ -113,22 +113,22 @@ function getTripPoints(tripId){
       feats.clearLayers();
       points.forEach(function(point){
         addToFeats(point);
-      })
-    })
+      });
+    });
 }
 
 function popupSubmit(params){
   var tripId = $(".selected").attr("data-trip-id");
   params.tripId = tripId;
   return $.ajax({
-    method:"post",
-    data:params,
-    dataType:"json",
-    url:"http://localhost:3000/locations.json"
-  }).then(function(data){
+    method: "post",
+    data: params,
+    dataType: "json",
+    url: "http://localhost:3000/locations.json"
+  }).then(function(data) {
     addToFeats(data);
     pending.clearLayers();
-  })
+  });
 }
 
 function tripSubmit(params){
@@ -140,7 +140,7 @@ function tripSubmit(params){
   }).then(function(data){
     addToTripList(data);
     $(".trip-form input").val("");
-  })
+  });
 }
 
 $(".trip-form button").on("click", function(){
@@ -148,11 +148,11 @@ $(".trip-form button").on("click", function(){
     locale: $(".trip-form input[name=locale]").val(),
     title: $(".trip-form input[name=title]").val(),
     desc: $(".trip-form input[name=desc]").val()
-  }
+  };
   tripSubmit(params);
-})
+});
 
 $(document).ready(function(){
   getAllPoints();
   getAllTrips();
-})
+});

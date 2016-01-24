@@ -1,7 +1,8 @@
 var bodyParser = require("body-parser");
 var hbs = require("hbs");
 
-var express = require("express")
+var express = require("express");
+var passport    = require("passport");
 var router = require("./config/routes");
 var app = express();
 
@@ -16,3 +17,12 @@ app.use(router)
 app.listen(3000, function(){
   console.log("app listening on 3000")
 })
+
+require('./config/passport')(passport);
+
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
+
+app.use(router);

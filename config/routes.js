@@ -1,4 +1,8 @@
 var express = require("express")
+var methodOverride      = require('method-override');
+var passport            = require('passport');
+
+var usersController     = require('../controllers/userController');
 var locationsController = require("../controllers/locationsController");
 var tripsController = require("../controllers/tripsController");
 
@@ -26,19 +30,49 @@ var router = express.Router();
 
 router.route("/locations.json")
   .get(locationsController.getLocations)
-  .post(locationsController.addLocation)
+  .post(locationsController.addLocation);
+
+router.get('/auth/validate', usersController.validateUser);
+
+router.route('/signup')
+  .get(usersController.getSignup)
+  .post(usersController.postSignup);
+
+router.route('/login')
+  .get(usersController.getLogin)
+  .post(usersController.postLogin);
+
+router.route("/logout")
+  .get(usersController.getLogout);
+
+// Facebook login
+router.route('/auth/facebook')
+  .get(passport.authenticate('facebook'));
+
+router.route('/auth/facebook/callback')
+  .get(passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  }));
+
+router.get("/user/index.:format?", usersController.getUserIndex);
+router.get("/user/:id.:format?", usersController.getUserShow);
+router.delete("/user/:id", usersController.deleteUserProfile);
+router.patch("/user/:id", usersController.patchUserEdit);
+router.get("/user/:id/edit", usersController.getUserEdit);
+
 
 router.route("/trips.json")
   .get(tripsController.getTrips)
-  .post(tripsController.addTrip)
+  .post(tripsController.addTrip);
 
 router.route("/trips/:id.json")
-  .get(tripsController.getTrip)
+  .get(tripsController.getTrip);
 
 router.route("/")
   .get(function(req,res){
-    res.render("show.hbs")
-  })
+    res.render("show.hbs");
+  });
 
 router.route("/checkPlace")
   .get(function(req,res){
@@ -49,25 +83,25 @@ router.route("/checkPlace")
       method:"GET",
       json:true,
       url:url
-    }
+    };
     request(requestParams,function(err,response,body){
       if (!err){
-       res.json(body.results[0])
+       res.json(body.results[0]);
       }else{
-        res.json({no:"results"})
+        res.json({no:"results"});
       }
-    })
-  })
+    });
+  });
 
 router.route("/login")
   .get(function(req,res){
-    res.render("login.hbs")
-  })
+    res.render("login.hbs");
+  });
 
 router.route("/trips/:id")
   .get(function(req,res){
-    res.render("show.hbs")
-  })
+    res.render("show.hbs");
+  });
   // .get(tripsController.getTrip)
   // .post(tripsController.addTrip)
 

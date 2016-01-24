@@ -14,6 +14,8 @@
     "fs": "0.0.2",
     "hbs": "^4.0.0",
     "mongoose": "^4.3.6",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.0.0",
     "node-geocoder": "^3.6.2",
     "request": "^2.67.0",
     "search-osm-geocode": "0.0.8"

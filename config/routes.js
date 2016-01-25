@@ -35,7 +35,7 @@ router.route("/trips/:id/locations.:format?")
 
 router.route("/")
   .get(function(req,res){
-    res.render("show.hbs")
+    res.redirect("/trips")
   })
 
 router.route("/checkPlace")

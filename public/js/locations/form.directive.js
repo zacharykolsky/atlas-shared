@@ -16,6 +16,7 @@
         location: "="
       },
       link: function(scope){
+        // console.log($state)
         scope.create = function(){
           scope.location.$save(function(response){
             console.log(response)

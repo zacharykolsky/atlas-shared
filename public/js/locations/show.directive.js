@@ -20,7 +20,10 @@
         location: "="
       },
       link: function(scope){
-        console.log(scope)
+        scope.formShow = false;
+        scope.showForm = function(){
+          scope.formShow = (scope.formShow)?false:true;
+        }
       }
     }
   }

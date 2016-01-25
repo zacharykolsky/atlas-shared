@@ -35,10 +35,14 @@ var controller = {
     })
   },
   deleteTrip:function(req,res){
-    Trip.remove({_id: req.params.id}, function(err){
-      if(!err){
-        res.json({deleted:true})
-      }
+    Trip.findById(req.params.id, function(err, trip){
+      Location.remove({'_id': {$in: trip.locations}}).then(function(){
+        trip.remove(function(err){
+          if(!err){
+            res.json({deleted:true})
+          }
+        })
+      })
     })
   },
   getTripLocations:function(req,res){
@@ -50,12 +54,9 @@ var controller = {
   },
   addTripLocation:function(req,res){
     Trip.findById(req.params.id,function(err,trip){
-      console.log(req.body)
       var info = req.body;
       info.tripId = req.params.id;
-      console.log(info)
       newLoc = new Location(info)
-      // newLoc.tripId = req.params.id;
       newLoc.save(function(err,loc){
         if(!err){
           trip.locations.push(loc._id)
@@ -66,6 +67,32 @@ var controller = {
           })
         }
       })
+    })
+  },
+  updateTripLocation:function(req,res){
+    Location.findById(req.params.id, function(err,loc){
+      loc.name = req.body.name;
+      loc.desc = req.body.desc;
+      loc.save(function(err){
+        if(!err){
+          res.json(loc)
+        }
+      })
+    })
+  },
+  deleteTripLocation:function(req,res){
+    Location.remove({_id: req.params.id}, function(err){
+      if(!err){
+        Trip.findById(req.params.tripId, function(err, trip){
+          var idx = trip.locations.indexOf(req.params.id);
+          trip.locations.splice(idx,1);
+          trip.save(function(err, doc){
+            if (!err){
+              res.json({deleted: true})
+            }
+          })
+        })
+      }
     })
   }
 }

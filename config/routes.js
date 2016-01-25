@@ -28,10 +28,10 @@ router.route("/trips/:id/locations.:format?")
   .get(tripsController.getTripLocations)
   .post(tripsController.addTripLocation)
 
-// router.route("/trips/:tripId/locations/:id.:format?")
-//   .get(tripsController.getTripLocation)
-//   .put(tripsController.updateTripLocation)
-//   .delete(tripsController.deleteTripLocation)
+router.route("/trips/:tripId/locations/:id.:format?")
+  // .get(tripsController.getTripLocation)
+  .put(tripsController.updateTripLocation)
+  .delete(tripsController.deleteTripLocation)
 
 router.route("/")
   .get(function(req,res){

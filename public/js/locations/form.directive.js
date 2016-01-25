@@ -27,18 +27,18 @@
           });
         }
         scope.update = function(){
-          scope.location.$update({id: scope.trip._id}, function(response){
-            $state.go("tripsShow", {id: tripId}, {reload: false});
+          scope.location.$update({tripId:tripId,id: scope.location._id}, function(response){
+            $state.go("tripsShow", {id: tripId}, {reload: true});
           });
         }
-        // scope.delete = function(){
-        //   scope.location.$delete({id: scope.trip._id}, function(){
-        //     $state.go("tripsIndex", {}, {reload: true});
-        //   });
-        // }
-        // scope.cancel = function(){
-        //   $state.go("tripsIndex", {}, {reload: true});
-        // }
+        scope.delete = function(){
+          scope.location.$delete({tripId:tripId,id: scope.location._id}, function(){
+            $state.go("tripsShow", {id: tripId}, {reload: true});
+          });
+        }
+        scope.cancel = function(){
+          $state.go("tripsShow", {id: tripId}, {reload: true});
+        }
       }
     }
   }

@@ -1,4 +1,6 @@
 <div class='form-container add-container' data-trip-form data-trip="TripShowViewModel.trip"></div>
-<!-- <div id="map" ></div> -->
 <div data-map id="map"></div>
 <div class='form-container add-container' data-location-form data-location="newLocation"></div>
+<div class='place-info' data-ng-repeat="location in TripShowViewModel.locations">
+  <div data-show-location data-location="location"></div>
+</div>

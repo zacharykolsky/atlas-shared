@@ -7,7 +7,8 @@ var Schema = mongoose.Schema,
 var LocationSchema = new Schema({
   createdAt: Date,
   createdBy: String,
-  coords: Array,
+  // coords: Array,
+  name: String,
   desc: String,
   tripId: String
 })

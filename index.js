@@ -24,10 +24,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
 app.use(router)
 
-app.listen(3000, function(){
-  console.log("app listening on 3000")
-})
-
 require('./config/passport')(passport);
 
 app.use(function (req, res, next) {
@@ -36,3 +32,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(router);
+
+app.listen(3000, function(){
+  console.log("app listening on 3000");
+});

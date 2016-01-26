@@ -4,14 +4,14 @@
   angular
   .module("users")
   .factory("UserFactory", [
-    "$resource",
+    "$resource","$http",
     UserFactoryFunction
   ]);
 
-  function UserFactoryFunction($resource){
-    var baseURL = window.location.href;
+  function UserFactoryFunction($resource,$http){
+    // var baseURL = window.location.href;
     return $resource("http://127.0.0.1:3000/profile.json", {}, {
-      // update: {method: "PUT"}
+      update: {method: "PUT"}
     });
   }
 }());

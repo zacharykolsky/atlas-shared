@@ -1,10 +1,10 @@
-user index
+<p>{{UserIndexViewModel.user.name}} is my name</p>
 <div class='six columns'>
   <h2>Your Trips:</h2>
-  <div class='no-trips' data-ng-show="UserIndexViewModel.trips.length==0">
+  <div class='no-trips' data-ng-show="UserIndexViewModel.user.trips.length==0">
     <p>You have no trips.</p>
   </div>
-  <div class='trip-info' data-ng-repeat="trip in UserIndexViewModel.trips | orderBy:'-createdAt'">
+  <div class='trip-info' data-ng-repeat="trip in UserIndexViewModel.user.trips | orderBy:'-createdAt'">
     <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}</a>
   </div>
 </div>

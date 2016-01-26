@@ -42,6 +42,9 @@ router.get("/user/index.:format?", usersController.getUserIndex);
 router.route("/profile.:format?")
   .get(usersController.getUserProfile)
 
+router.route("/users/:id/trips")
+  .get(tripsController.getUsersTrips)
+
 
 router.get("/user/:id.:format?", usersController.getUserShow);
 router.delete("/user/:id", usersController.deleteUserProfile);

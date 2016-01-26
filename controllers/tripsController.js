@@ -12,6 +12,16 @@ var controller = {
       }
     })
   },
+  getUsersTrips:function(req,res){
+    var userId = req.params.id;
+    Trip.find({'userId':userId}, function(err,docs){
+      if (req.params.format){
+        res.json(docs)
+      }else{
+        res.json({not:"json"})
+      }
+    })
+  },
   getTrip:function(req,res){
     Trip.findById(req.params.id,function(err,doc){
       res.json(doc)

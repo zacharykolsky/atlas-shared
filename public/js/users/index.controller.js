@@ -7,21 +7,28 @@
     "TripFactory",
     "LocationFactory",
     "UserFactory",
+    "UserTripFactory",
     "$stateParams",
     "$http",
     UserIndexControllerFunction
   ]);
 
-  function UserIndexControllerFunction(TripFactory, LocationFactory, UserFactory, $stateParams, $http){
-    this.user = UserFactory.query(function(profile){
-      console.log(profile)
-    })
+  function UserIndexControllerFunction(TripFactory, LocationFactory, UserFactory, UserTripFactory, $stateParams, $http){
+    this.user = UserFactory.get({},function(user){console.log(user)});
+    // this.user = {};
+    this.trips = [];
 
-    $http.get("http://127.0.0.1:3000/profile.json")
-      .then(function(response){console.log(response.data)})
+    // console.log(this)
+    // new UserFactory.get({}).then(function(user){
+    //   console.log(this)
+    //   this.user = user;
+    //   new UserTripFactory.get({userId: scope.user._id}).then(function(trips){
+    //     this.trips = trips;
+    //   }.bind(this))
+    // });
+    // this.trips = new UserTripFactory.get({userId: this.user._id});
+    // console.log(this.trips)
 
-    // console.log(this.user)
-    // this.trips = TripFactory.query();
     // this.newTrip = new TripFactory();
     // this.trip = TripFactory.get({id: $stateParams.id});
     // this.locations = LocationFactory.query({tripId: $stateParams.id});

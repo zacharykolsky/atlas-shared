@@ -20,8 +20,8 @@
         if (!scope.location){
           scope.location = new LocationFactory();
         }
+
         scope.create = function(){
-          console.log(scope.location)
           scope.location.$save({tripId:tripId},function(response){
             $state.go("tripsShow", {id: tripId}, {reload: true});
           });

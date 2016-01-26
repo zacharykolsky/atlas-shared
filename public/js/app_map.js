@@ -16,19 +16,6 @@
 //   console.log(e)
 // })
 //
-// geocoder.on("select", function(e){
-//   var geo = this;
-//   $.getJSON("http://localhost:3000/checkPlace?q="+e.feature.properties.label)
-//     .then(function(result){
-//       var sw = result.bounds.southwest;
-//       var ne = result.bounds.northeast;
-//       var southWest = L.latLng(sw.lat, sw.lng),
-//            northEast = L.latLng(ne.lat, ne.lng),
-//            bounds = L.latLngBounds(southWest, northEast);
-//       map.fitBounds(bounds)
-//       geo.options.bounds = bounds;
-//     })
-// })
 //
 // var feats = L.featureGroup().addTo(map);
 // var pending = L.featureGroup().addTo(map);

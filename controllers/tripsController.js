@@ -3,7 +3,8 @@ var Location = require("../models/location")
 
 var controller = {
   getTrips:function(req,res){
-    Trip.find({}, function(err,docs){
+    var userId = req.user._id;
+    Trip.find({'userId':userId}, function(err,docs){
       if (req.params.format){
         res.json(docs)
       }else{
@@ -17,7 +18,9 @@ var controller = {
     })
   },
   addTrip:function (req,res){
-    var newTrip = new Trip(req.body);
+    var info = req.body;
+    info.userId = req.user._id;
+    var newTrip = new Trip(info);
     newTrip.save(function(err){
       res.redirect("/trips/"+newTrip._id)
     })

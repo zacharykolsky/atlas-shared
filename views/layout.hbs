@@ -63,9 +63,14 @@
         <div class="alert alert-danger">{{message}}</div>
       {{/if}}
 
-      <form method="post" action="/login">
-        <p><a class="btn btn-primary" href="/auth/facebook">Login using Facebook</a></p>
-      </form>
+      {{#if currentUser}}
+        <p>Welcome {{currentUser.name}}</p>
+        <p><a class="btn btn-primary" href="/logout" target="_self">Logout</a></p>
+      {{else}}
+        <form method="post" action="/login">
+          <p><a class="btn btn-primary" href="/auth/facebook">Login using Facebook</a></p>
+        </form>
+      {{/if}}
     </header>
     <main class="container">
       {{{body}}}

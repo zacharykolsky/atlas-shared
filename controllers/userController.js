@@ -41,7 +41,7 @@ function postLogin(request, response) {
 function getLogout(request, response) {
   request.logout();
   response.redirect('/');
-  console.log("getLogout got called");
+  // console.log("getLogout got called");
 }
 
 function getFriends(req,res) {

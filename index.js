@@ -1,3 +1,5 @@
+var fs = require("fs");
+var env = fs.existsSync("./env.js") ? require("./env") : process.env;
 
 var express        = require("express");
 var app            = express();
@@ -22,11 +24,6 @@ app.use(flash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
-app.use(router)
-
-app.listen(3000, function(){
-  console.log("app listening on 3000")
-})
 
 require('./config/passport')(passport);
 
@@ -35,4 +32,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(router);
+app.use(router)
+
+app.listen(env.PORT, function(){
+  console.log("app listening on 3000")
+})
+
+// app.use(router);

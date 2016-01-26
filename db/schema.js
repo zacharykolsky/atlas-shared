@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/map-test");
+mongoose.connect(process.env.MONGOLAB_URI||"mongodb://localhost/map-test");
 
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId

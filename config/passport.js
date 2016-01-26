@@ -1,7 +1,8 @@
 var FacebookStrategy  = require("passport-facebook").Strategy;
 var LocalStrategy     = require("passport-local").Strategy;
 var User              = require("../models/user");
-process.env           = require("../env");
+var fs = require("fs");
+var env = fs.existsSync("./env.js") ? require("../env") : process.env;
 
 module.exports = function(passport) {
 
@@ -18,9 +19,9 @@ module.exports = function(passport) {
   // Facebook login
   passport.use('facebook', new FacebookStrategy({
     // Here we reference the values in process.process.env.js.
-    clientID: process.env.facebookID,
-    clientSecret: process.env.facebookSecret,
-    callbackURL: process.env.facebookCallbackURL,
+    clientID: env.facebookID,
+    clientSecret: env.facebookSecret,
+    callbackURL: env.facebookCallbackURL,
     profileFields: ['id', 'name','picture.type(large)', 'emails', 'displayName', 'about', 'bio']
   }, function(token, secret, profile, done) {
     process.nextTick(function(){

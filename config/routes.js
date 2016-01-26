@@ -29,7 +29,6 @@ router.route("/trips/:id/locations.:format?")
   .post(tripsController.addTripLocation)
 
 router.route("/trips/:tripId/locations/:id.:format?")
-  // .get(tripsController.getTripLocation)
   .put(tripsController.updateTripLocation)
   .delete(tripsController.deleteTripLocation)
 

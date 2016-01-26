@@ -9,7 +9,8 @@
   ]);
 
   function LocationFactoryFunction($resource,$state){
-    return $resource("http://localhost:3000/trips/:tripId/locations/:id.json", {tripId:'@tripId'}, {
+    var baseURL = window.location.href;
+    return $resource(baseURL+"/trips/:tripId/locations/:id.json", {tripId:'@tripId'}, {
       update: {method: "PUT"}
     });
   }

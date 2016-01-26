@@ -9,7 +9,8 @@
   ]);
 
   function TripFactoryFunction($resource){
-    return $resource("http://localhost:3000/trips/:id.json", {}, {
+    var baseURL = window.location.href;
+    return $resource(baseURL+"/trips/:id.json", {}, {
       update: {method: "PUT"}
     });
   }

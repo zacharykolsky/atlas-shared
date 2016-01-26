@@ -10,7 +10,7 @@
 
   function LocationFactoryFunction($resource,$state){
     var baseURL = window.location.href;
-    return $resource(baseURL+"/trips/:tripId/locations/:id.json", {tripId:'@tripId'}, {
+    return $resource(baseURL+"/:tripId/locations/:id.json", {tripId:'@tripId'}, {
       update: {method: "PUT"}
     });
   }

@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="css/style.css">
 
     <script src="js/app.js"></script>
-    
+
     <script src="js/trips/trips.js"></script>
     <script src="js/trips/trip.factory.js"></script>
     <script src="js/trips/form.directive.js"></script>
@@ -36,6 +36,24 @@
 
     <script src="js/trips/index.controller.js"></script>
     <script src="js/trips/show.controller.js"></script>
+
+    <script type="text/javascript">
+    if (window.location.hash && window.location.hash == '#_=_') {
+      if (window.history && history.pushState) {
+          window.history.pushState("", document.title, window.location.pathname);
+      } else {
+          // Prevent scrolling by storing the page's current scroll offset
+          var scroll = {
+              top: document.body.scrollTop,
+              left: document.body.scrollLeft
+          };
+          window.location.hash = '';
+          // Restore the scroll offset, should be flicker free
+          document.body.scrollTop = scroll.top;
+          document.body.scrollLeft = scroll.left;
+      }
+    }
+    </script>
   </head>
   <body>
     <header>

@@ -33,7 +33,7 @@ router.route('/auth/facebook')
 
 router.route('/auth/facebook/callback')
   .get(passport.authenticate('facebook', {
-    successRedirect: '/',
+    successRedirect: '/trips',
     failureRedirect: '/login'
   }));
 
@@ -65,7 +65,7 @@ router.route("/trips/:tripId/locations/:id.:format?")
 
 router.route("/")
   .get(function(req,res){
-    res.redirect("/trips")
+    res.redirect("/login")
   })
 
 router.route("/checkPlace")

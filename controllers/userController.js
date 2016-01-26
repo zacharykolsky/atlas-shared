@@ -1,6 +1,8 @@
 var express  = require("express");
 var app      = express();
 var User     = require("../models/user.js");
+var Trip = require("../models/trip.js")
+var Location = require("../models/location.js")
 var passport = require("passport");
 var request  = require("request")
 
@@ -126,6 +128,21 @@ function validateUser(req, res) {
   }
 }
 
+function getUserProfile(req,res){
+  var userId = req.user._id;
+  User.findById(userId, function(err,doc){
+    if (!err){
+      if (req.params.format){
+        res.json(doc)
+      }else{
+        res.render("index.hbs")
+      }
+    }else{
+      res.json(err);
+    }
+  })
+}
+
 module.exports = {
   getLogin:          getLogin,
   postLogin:         postLogin,
@@ -138,5 +155,6 @@ module.exports = {
   patchUserEdit:     patchUserEdit,
   deleteUserProfile: deleteUserProfile,
   validateUser:      validateUser,
-  getFriends:        getFriends
+  getFriends:        getFriends,
+  getUserProfile: getUserProfile
 };

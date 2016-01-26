@@ -33,15 +33,23 @@ router.route('/auth/facebook')
 
 router.route('/auth/facebook/callback')
   .get(passport.authenticate('facebook', {
-    successRedirect: '/trips',
-    failureRedirect: '/login'
+      successRedirect: '/profile',
+      failureRedirect: '/login'
   }));
 
 router.get("/user/index.:format?", usersController.getUserIndex);
+
+router.route("/profile.:format?")
+  .get(usersController.getUserProfile)
+
+
 router.get("/user/:id.:format?", usersController.getUserShow);
 router.delete("/user/:id", usersController.deleteUserProfile);
 router.patch("/user/:id", usersController.patchUserEdit);
 router.get("/user/:id/edit", usersController.getUserEdit);
+
+router.route("/users.:format?")
+  .get(usersController.getUserIndex)
 
 router.route("/user/:id/friends")
   .get(usersController.getFriends);

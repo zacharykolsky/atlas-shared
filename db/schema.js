@@ -7,17 +7,10 @@ var Schema = mongoose.Schema,
 var LocationSchema = new Schema({
   createdAt: Date,
   createdBy: String,
-  // coords: Array,
   name: String,
   desc: String,
   tripId: String
 })
-//
-// var ProtipSchema = new Schema({
-//   createdAt: Date,
-//   createdBy: String,
-//   protip:String
-// })
 
 var TripSchema = new Schema({
   createdAt: Date,
@@ -25,10 +18,8 @@ var TripSchema = new Schema({
   title:String,
   desc:String,
   locale:String,
-  locations: []//,
-  // protips:[]
+  locations: []
 })
 
 mongoose.model("Location", LocationSchema);
 mongoose.model("Trip", TripSchema);
-// mongoose.model("Protip", ProtipSchema)

@@ -34,15 +34,7 @@ app.use(function (req, res, next) {
 
 app.use(router);
 
-<<<<<<< HEAD
-app.listen(3000, function(){
-  console.log("app listening on 3000");
-});
-=======
 var port = process.env.PORT || 3000;
 app.listen(port , function(){
-  console.log("app listening on "+port)
+  console.log("app listening on "+port);
 })
-
-// app.use(router);
->>>>>>> 96b3614b4b7d681cccd59ee4ca08185492dab926

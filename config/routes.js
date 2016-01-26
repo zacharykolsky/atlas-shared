@@ -61,6 +61,9 @@ router.delete("/user/:id", usersController.deleteUserProfile);
 router.patch("/user/:id", usersController.patchUserEdit);
 router.get("/user/:id/edit", usersController.getUserEdit);
 
+router.route("/user/:id/friends")
+  .get(usersController.getFriends);
+
 
 router.route("/trips.json")
   .get(tripsController.getTrips)
@@ -93,10 +96,10 @@ router.route("/checkPlace")
     });
   });
 
-router.route("/login")
-  .get(function(req,res){
-    res.render("login.hbs");
-  });
+// router.route("/login")
+//   .get(function(req,res){
+//     res.render("login.hbs");
+//   });
 
 router.route("/trips/:id")
   .get(function(req,res){

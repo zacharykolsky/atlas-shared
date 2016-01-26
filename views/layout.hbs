@@ -18,6 +18,14 @@
   <body>
     <header>
       <h1>Atlas Shared</h1>
+
+      {{#if message}}
+        <div class="alert alert-danger">{{message}}</div>
+      {{/if}}
+
+      <form method="post" action="/login">
+        <p><a class="btn btn-primary" href="/auth/facebook">Login using Facebook</a></p>
+      </form>
     </header>
     <main class="container">
       {{{body}}}

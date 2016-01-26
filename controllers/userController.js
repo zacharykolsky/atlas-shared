@@ -1,5 +1,9 @@
-var User = require("../models/user.js");
+var express  = require("express");
+var app      = express();
+var User     = require("../models/user.js");
 var passport = require("passport");
+var request  = require("request")
+
 
 // GET /signup
 function getSignup(request, response) {
@@ -38,6 +42,34 @@ function getLogout(request, response) {
   request.logout();
   response.redirect('/');
   console.log("getLogout got called");
+}
+
+function getFriends(req,res) {
+  var url           = '',
+      requestParams = {};
+
+  User.findById(req.params.id).then(function(results) {
+    var fbId = results.facebook.id;
+    var fbToken = results.facebook.token;
+    // console.log(results);
+
+    var url = "https://graph.facebook.com/v2.5/"+ fbId +"?fields=context.fields(mutual_friends)&access_token="+fbToken;
+    var requestParams = {
+      method: "GET",
+      json: true,
+      url: url
+    };
+    console.log(requestParams);
+
+    request(requestParams,function(err,response,body){
+      if (!err){
+        res.json(body);
+      //  res.json(body.results[0]);
+      }else{
+        res.json({no:"results"});
+      }
+    });
+  });
 }
 
 function getUserIndex(req,res){
@@ -95,15 +127,16 @@ function validateUser(req, res) {
 }
 
 module.exports = {
-  getLogin: getLogin,
-  postLogin: postLogin ,
-  getSignup: getSignup,
-  postSignup: postSignup,
-  getLogout: getLogout,
-  getUserIndex : getUserIndex,
-  getUserShow : getUserShow,
-  getUserEdit : getUserEdit,
-  patchUserEdit : patchUserEdit,
-  deleteUserProfile : deleteUserProfile,
-  validateUser : validateUser
+  getLogin:          getLogin,
+  postLogin:         postLogin,
+  getSignup:         getSignup,
+  postSignup:        postSignup,
+  getLogout:         getLogout,
+  getUserIndex:      getUserIndex,
+  getUserShow:       getUserShow,
+  getUserEdit:       getUserEdit,
+  patchUserEdit:     patchUserEdit,
+  deleteUserProfile: deleteUserProfile,
+  validateUser:      validateUser,
+  getFriends:        getFriends
 };

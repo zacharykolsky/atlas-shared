@@ -1,3 +1,5 @@
+var fs = require("fs");
+var env = fs.existsSync("./env.js") ? require("./env") : process.env;
 
 var express        = require("express");
 var app            = express();
@@ -22,7 +24,6 @@ app.use(flash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
-app.use(router)
 
 require('./config/passport')(passport);
 

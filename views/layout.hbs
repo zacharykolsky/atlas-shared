@@ -64,7 +64,7 @@
       {{/if}}
 
       {{#if currentUser}}
-        <p>Welcome {{currentUser.name}}</p>
+        <p>Welcome {{currentUser.name}}</p><img src="{{currentUser.photo}}" alt="">
         <p><a class="btn btn-primary" href="/logout" target="_self">Logout</a></p>
       {{else}}
         <form method="post" action="/login">

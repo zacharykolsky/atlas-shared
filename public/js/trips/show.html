@@ -1,4 +1,4 @@
-<div class='form-container add-container' data-trip-form data-trip="TripShowViewModel.trip"></div>
+<div class='form-container add-container' data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId" data-trip-form data-trip="TripShowViewModel.trip"></div>
 <div data-map id="map"></div>
 <div class='form-container add-container' data-location-form data-location="newLocation"></div>
 <div class='place-info' data-ng-repeat="location in TripShowViewModel.locations">

@@ -88,8 +88,11 @@ var controller = {
   },
   addTripLocation:function(req,res){
     Trip.findById(req.params.id,function(err,trip){
+      console.log(req.body);
       var info = req.body;
+      info.coords = [parseFloat(req.body.lat),parseFloat(req.body.lon)]
       info.tripId = req.params.id;
+      console.log(info);
       newLoc = new Location(info)
       newLoc.save(function(err,loc){
         if(!err){

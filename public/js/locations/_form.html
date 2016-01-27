@@ -1,6 +1,8 @@
 <form name="locationForm">
   <fieldset id="geocontainer">
     <!-- geocoder should get appended here -->
+    <input type="text" name="lat" data-ng-model="location.lat" value="">
+    <input type="text" name="lon" data-ng-model="location.lon" value="">
   </fieldset>
   <fieldset>
     <label for="category">Restaurant</label>
@@ -9,14 +11,14 @@
     <input required type="radio" name="category" data-ng-model="location.category" value="museum"/>
   </fieldset>
   <fieldset>
-    <label for="type">place Name:</label>
+    <label for="name">place Name:</label>
     <input required type="text" name="name" data-ng-model="location.name" placeholder="place name"/>
     <!-- <span class='invalid' data-ng-show="locationForm.type.$dirty && locationForm.type.$invalid">
       <span data-ng-show="locationForm.type.$error.required">Type is required.</span>
     </span> -->
   </fieldset>
   <fieldset>
-    <label for="type">place Description:</label>
+    <label for="desc">place Description:</label>
     <input required type="text" name="desc" data-ng-model="location.desc" placeholder="place description"/>
     <!-- <span class='invalid' data-ng-show="locationForm.type.$dirty && locationForm.type.$invalid">
       <span data-ng-show="locationForm.type.$error.required">Type is required.</span>

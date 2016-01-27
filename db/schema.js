@@ -11,7 +11,10 @@ var LocationSchema = new Schema({
   name: String,
   desc: String,
   tripId: String,
-  category:String
+  category:String,
+  lat: String,
+  lon: String,
+  coords: Array
 })
 
 var UserSchema = mongoose.Schema({

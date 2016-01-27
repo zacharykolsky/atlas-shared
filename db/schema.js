@@ -40,6 +40,7 @@ UserSchema.methods.validPassword = function(password) {
 var TripSchema = new Schema({
   createdAt: Date,
   createdBy: String,
+  date: String,
   title:String,
   desc:String,
   locale:String,

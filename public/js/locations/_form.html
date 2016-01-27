@@ -3,21 +3,23 @@
     <!-- geocoder should get appended here -->
   </fieldset>
   <fieldset>
-    <label for="category">Restaurant</label>
-    <input required type="radio" name="category" data-ng-model="location.category" value="restaurant"/>
-    <label for="category">Museum</label>
-    <input required type="radio" name="category" data-ng-model="location.category" value="museum"/>
+    <label for="category">Places to Eat</label>
+    <input required type="radio" name="category" data-ng-model="location.category" value="places to eat"/>
+    <label for="category">Places to Stay</label>
+    <input required type="radio" name="category" data-ng-model="location.category" value="places to stay"/>
+    <label for="category">Places to See</label>
+    <input required type="radio" name="category" data-ng-model="location.category" value="places to see"/>
   </fieldset>
   <fieldset>
-    <label for="type">place Name:</label>
-    <input required type="text" name="name" data-ng-model="location.name" placeholder="place name"/>
+    <label for="type">Where did you go?</label>
+    <input required type="text" name="name" data-ng-model="location.name" placeholder="Name of establishment"/>
     <!-- <span class='invalid' data-ng-show="locationForm.type.$dirty && locationForm.type.$invalid">
       <span data-ng-show="locationForm.type.$error.required">Type is required.</span>
     </span> -->
   </fieldset>
   <fieldset>
-    <label for="type">place Description:</label>
-    <input required type="text" name="desc" data-ng-model="location.desc" placeholder="place description"/>
+    <label for="type">Why was it amazing?</label>
+    <input required type="text" name="desc" data-ng-model="location.desc" placeholder="This place is bananas because..."/>
     <!-- <span class='invalid' data-ng-show="locationForm.type.$dirty && locationForm.type.$invalid">
       <span data-ng-show="locationForm.type.$error.required">Type is required.</span>
     </span> -->

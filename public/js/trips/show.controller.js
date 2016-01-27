@@ -14,6 +14,8 @@
   function TripShowControllerFunction(TripFactory, LocationFactory, ProfileFactory, $stateParams){
     this.profile = ProfileFactory.get({},function(currentProfile){console.log(currentProfile)});
     this.trip = TripFactory.get({id: $stateParams.id});
-    this.locations = LocationFactory.query({tripId: $stateParams.id});
+    this.locations = LocationFactory.query({tripId: $stateParams.id}, function(locations){
+      console.log(locations);
+    });
   }
 }());

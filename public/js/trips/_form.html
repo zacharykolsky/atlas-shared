@@ -1,21 +1,23 @@
 <form name="tripForm">
   <fieldset>
+    <label for="type">When did you go?</label>
+    <input required type="text" name="type" data-ng-model="trip.date" placeholder="Month Year"/>
     <label for="type">Trip Name:</label>
-    <input required type="text" name="type" data-ng-model="trip.title" placeholder="Trip title"/>
+    <input required type="text" name="type" data-ng-model="trip.title" placeholder="Example: A week in Honolulu"/>
     <!-- <span class='invalid' data-ng-show="tripForm.type.$dirty && tripForm.type.$invalid">
       <span data-ng-show="tripForm.type.$error.required">Type is required.</span>
     </span> -->
   </fieldset>
   <fieldset>
-    <label for="type">Trip Description:</label>
-    <input required type="text" name="type" data-ng-model="trip.desc" placeholder="Trip description"/>
+    <label for="type">Trip Summary:</label>
+    <input required type="text" name="type" data-ng-model="trip.desc" placeholder="Example: Went to Honolulu with Elizabeth and Jessika in June 2015."/>
     <!-- <span class='invalid' data-ng-show="tripForm.type.$dirty && tripForm.type.$invalid">
       <span data-ng-show="tripForm.type.$error.required">Type is required.</span>
     </span> -->
   </fieldset>
   <fieldset>
-    <label for="type">Trip Locale:</label>
-    <input required type="text" name="type" data-ng-model="trip.locale" placeholder="Trip locale"/>
+    <label for="type">Where did you go?</label>
+    <input required type="text" name="type" data-ng-model="trip.locale" placeholder="City, State, Country"/>
     <!-- <span class='invalid' data-ng-show="tripForm.type.$dirty && tripForm.type.$invalid">
       <span data-ng-show="tripForm.type.$error.required">Type is required.</span>
     </span> -->

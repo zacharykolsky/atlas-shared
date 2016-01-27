@@ -1,8 +1,8 @@
 var express = require("express")
-var methodOverride      = require('method-override');
-var passport            = require('passport');
+var methodOverride = require('method-override');
+var passport = require('passport');
 
-var usersController     = require('../controllers/userController');
+var usersController = require('../controllers/userController');
 var locationsController = require("../controllers/locationsController");
 var tripsController = require("../controllers/tripsController");
 
@@ -10,10 +10,7 @@ var request = require("request")
 
 var router = express.Router();
 
-router.route("/locations.json")
-  .get(locationsController.getLocations)
-  .post(locationsController.addLocation);
-
+//facebook auth
 router.get('/auth/validate', usersController.validateUser);
 
 router.route('/signup')
@@ -37,13 +34,12 @@ router.route('/auth/facebook/callback')
       failureRedirect: '/login'
   }));
 
-router.get("/user/index.:format?", usersController.getUserIndex);
-
 router.route("/profile.:format?")
   .get(usersController.getUserProfile)
 
-router.route("/users/:id/trips")
-  .get(tripsController.getUsersTrips)
+router.route("/users/:id")
+  .get(usersController.getUserProfile)
+  // .get(tripsController.getUsersTrips)
 
 
 router.get("/user/:id.:format?", usersController.getUserShow);
@@ -57,7 +53,7 @@ router.route("/users.:format?")
 router.route("/user/:id/friends")
   .get(usersController.getFriends);
 
-router.route("/trips.:format?")
+router.route("/users/:id/trips.:format?")
   .get(tripsController.getTrips)
   .post(tripsController.addTrip);
 
@@ -99,3 +95,22 @@ router.route("/checkPlace")
   });
 
 module.exports = router;
+
+
+/*
+routes we need:
+--user login/logout--
+/login
+/logout
+/signup
+/auth/validate
+/auth/Facebook
+/auth/facebook/callback
+
+/profile -- get profile of currentUser
+/user/:userId -- get profile of another user, user show
+/user/:userId/trips/:id -- get a trip
+
+
+
+*/

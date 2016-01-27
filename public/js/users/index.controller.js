@@ -6,17 +6,20 @@
   .controller("UserIndexController", [
     "TripFactory",
     "LocationFactory",
-    "UserFactory",
+    "ProfileFactory",
     "UserTripFactory",
     "$stateParams",
     "$http",
     UserIndexControllerFunction
   ]);
 
-  function UserIndexControllerFunction(TripFactory, LocationFactory, UserFactory, UserTripFactory, $stateParams, $http){
-    this.user = UserFactory.get({},function(user){console.log(user)});
+  function UserIndexControllerFunction(TripFactory, LocationFactory, ProfileFactory, UserTripFactory, $stateParams, $http){
+    this.user = ProfileFactory.get({},function(user){
+      user.newTrip = new TripFactory({userId:user._id})
+    });
+    // this.newTrip = new TripFactory({})
     // this.user = {};
-    this.trips = [];
+    // this.trips = [];
 
     // console.log(this)
     // new UserFactory.get({}).then(function(user){

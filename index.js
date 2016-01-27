@@ -11,7 +11,7 @@ var cookieParser   = require("cookie-parser");
 var session        = require("express-session");
 var methodOverride = require('method-override');
 
-var router         = require("./config/routes");
+var router         = require("./config/actualroutes");
 
 app.set('view engine', 'hbs');
 app.set("views","./views");

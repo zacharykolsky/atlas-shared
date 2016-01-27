@@ -16,6 +16,10 @@
         trip: "="
       },
       link: function(scope){
+        console.log($state)
+        if (!scope.trip){
+          scope.trip = new TripFactory();
+        }
         scope.create = function(){
           scope.trip.$save(function(response){
             $state.go("tripsShow", {id: response._id}, {reload: true});

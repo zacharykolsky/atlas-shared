@@ -129,11 +129,10 @@ function validateUser(req, res) {
 }
 
 function getUserProfile(req,res){
-  var userId = req.user._id;
+  var userId = (req.params.id)?req.params.id:req.user._id;
   User.findById(userId, function(err,user){
     if (!err){
       Trip.find({'userId':userId}, function(err,trips){
-        console.log(trips)
         if (req.params.format){
           user.trips = trips;
           res.json(user)
@@ -141,14 +140,6 @@ function getUserProfile(req,res){
           res.render("index.hbs")
         }
       })
-
-
-
-      // if (req.params.format){
-      //   res.json(doc)
-      // }else{
-      //   res.render("index.hbs")
-      // }
     }else{
       res.json(err);
     }

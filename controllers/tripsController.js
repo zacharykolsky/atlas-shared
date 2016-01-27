@@ -1,5 +1,6 @@
 var Trip = require("../models/trip")
 var Location = require("../models/location")
+var User = require("../models/user")
 
 var controller = {
   getTrips:function(req,res){
@@ -28,12 +29,32 @@ var controller = {
     })
   },
   addTrip:function (req,res){
-    var info = req.body;
-    info.userId = req.user._id;
-    var newTrip = new Trip(info);
-    newTrip.save(function(err){
-      res.redirect("/trips/"+newTrip._id)
+    User.findById(req.params.id, function(err, user){
+      if (!err){
+        var info = req.body;
+        info.userId = user._id;
+        var newTrip = new Trip(info)
+        newTrip.save(function(err){
+          if (!err){
+            user.trips.push(newTrip._id);
+            user.save(function(err){
+              if (!err){
+                res.redirect("/trips/"+newTrip._id)  
+                // res.redirect("/users/"+user._id+"/trips/"+newTrip._id)
+              }
+            })
+          }
+        })
+      }
     })
+    // var info = req.body;
+    // info.userId = req.user._id;
+    // console.log(req.params.id)
+    // console.log(info)
+    // var newTrip = new Trip(info);
+    // newTrip.save(function(err){
+    //   res.redirect("/trips/"+newTrip._id)
+    // })
   },
   updateTrip:function(req,res){
     Trip.findById(req.params.id, function(err, trip){

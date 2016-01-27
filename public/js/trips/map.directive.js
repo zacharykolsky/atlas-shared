@@ -21,7 +21,7 @@
 
         var geocoderOptions = {
           bounds: true,
-          markers: false,
+          // markers: false,
           layers: 'coarse',
           expanded:true
         }

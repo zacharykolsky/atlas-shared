@@ -10,7 +10,7 @@
 
   function TripFactoryFunction($resource){
     var baseURL = window.location.href;
-    return $resource(baseURL+"/:id.json", {}, {
+    return $resource("http://127.0.0.1:3000/trips/:id.json", {}, {
       update: {method: "PUT"}
     });
   }

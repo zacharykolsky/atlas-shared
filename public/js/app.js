@@ -24,7 +24,7 @@
       controllerAs: "UserIndexViewModel"
     })
     .state("userShow", {
-      url: "/user/:id",
+      url: "/users/:id",
       templateUrl: "js/users/show.html",
       controller: "UserShowController",
       controllerAs: "UserShowViewModel"

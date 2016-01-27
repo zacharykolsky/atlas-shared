@@ -146,6 +146,14 @@ function getUserProfile(req,res){
   })
 }
 
+function getAllUsers(req,res){
+  User.find({},function(err,users){
+    if(!err){
+      res.json(users)
+    }
+  })
+}
+
 module.exports = {
   getLogin:          getLogin,
   postLogin:         postLogin,
@@ -159,5 +167,6 @@ module.exports = {
   deleteUserProfile: deleteUserProfile,
   validateUser:      validateUser,
   getFriends:        getFriends,
-  getUserProfile: getUserProfile
+  getUserProfile: getUserProfile,
+  getAllUsers: getAllUsers
 };

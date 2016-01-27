@@ -15,6 +15,12 @@ router.route("/users/:id.:format?")
   .get(usersController.getUserProfile)
   //get user show page
 
+router.route("/users.json")
+  .get(usersController.getAllUsers)
+
+  router.route("/users/:id/friends")
+    .get(usersController.getFriends);
+
 router.route("/trips/:id.:format?")
   .get(tripsController.getTrip)
   .put(tripsController.updateTrip)

@@ -3,6 +3,12 @@
     <!-- geocoder should get appended here -->
   </fieldset>
   <fieldset>
+    <label for="category">Restaurant</label>
+    <input required type="radio" name="category" data-ng-model="location.category" value="restaurant"/>
+    <label for="category">Museum</label>
+    <input required type="radio" name="category" data-ng-model="location.category" value="museum"/>
+  </fieldset>
+  <fieldset>
     <label for="type">place Name:</label>
     <input required type="text" name="name" data-ng-model="location.name" placeholder="place name"/>
     <!-- <span class='invalid' data-ng-show="locationForm.type.$dirty && locationForm.type.$invalid">

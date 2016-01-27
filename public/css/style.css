@@ -18,6 +18,7 @@ header{
 }
 
 header ul {
+  margin-top: 10px;
   float: right;
 }
 
@@ -27,8 +28,27 @@ header li {
   display: inline-block;
 }
 
+header li a {
+  text-decoration: none;
+}
+
+.onboard-facebook {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 180px;
+  height: 36px;
+  background-color: white;
+  line-height: 36px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #49639F;
+  color: white;
+}
+
 header li img {
   vertical-align: middle;
+  border-radius: 50%;
 }
 
 /*===============================

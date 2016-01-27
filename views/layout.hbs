@@ -16,11 +16,11 @@
 
     <script src="/components/mapbox.js/mapbox.js"></script>
     <link rel="stylesheet" href="/components/mapbox.js/mapbox.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <script src="/components/leaflet-geocoder-mapzen/dist/leaflet-geocoder-mapzen.js"></script>
     <link rel="stylesheet" href="/components/leaflet-geocoder-mapzen/dist/leaflet-geocoder-mapzen.css">
 
-    <link rel="stylesheet" href="css/style.css">
 
     <script src="js/app.js"></script>
 
@@ -62,23 +62,36 @@
     </script>
   </head>
   <body>
-    <header>
-      <h1>Atlas Shared</h1>
-
-      {{#if message}}
+    <header class="row">
+      <div class="container">
+                {{#if message}}
         <div class="alert alert-danger">{{message}}</div>
-      {{/if}}
+        {{/if}}
 
-      {{#if currentUser}}
-        <p>Welcome {{currentUser.name}}</p><img src="{{currentUser.photo}}" alt="">
-        <p><a class="btn btn-primary" href="/logout" target="_self">Logout</a></p>
-      {{else}}
-        <form method="post" action="/login">
-          <p><a class="btn btn-primary" href="/auth/facebook">Login using Facebook</a></p>
-        </form>
-      {{/if}}
+        <div class="one-half column">
+          <h1>Atlas Shared</h1>
+        </div>
+
+        <div class="one-half column">
+          <ul>
+          {{#if currentUser}}
+            <li>{{currentUser.name}}</li>
+            <li><img class="profile-pic" src="{{currentUser.photo}}" alt=""></li>
+            <li><a class="btn btn-primary" href="/logout" target="_self">Logout</a></li>
+          {{else}}
+          <li>
+            <form method="post" action="/login">
+              <p><a class="btn btn-primary" href="/auth/facebook">Login using Facebook</a></p>
+            </form>
+          </li>
+          {{/if}}
+        </ul>
+        </div>
+      </div>
+
+
     </header>
-    <main class="container">
+    <main class="section">
       {{{body}}}
     </main>
     <footer>

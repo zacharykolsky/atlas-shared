@@ -1,14 +1,18 @@
-<p>{{UserIndexViewModel.user.name}} is my name</p>
-<div class='six columns'>
-  <h2>Your Trips:</h2>
-  <div class='no-trips' data-ng-show="UserIndexViewModel.user.trips.length==0">
-    <p>You have no trips.</p>
+<div class="container">
+  <p>{{UserIndexViewModel.user.name}} is my name</p>
+  <div class='six columns'>
+    <h2>Your Trips:</h2>
+    <div class='no-trips' data-ng-show="UserIndexViewModel.user.trips.length==0">
+      <p>You have no trips.</p>
+    </div>
+    <div class='trip-info u-cf' data-ng-repeat="trip in UserIndexViewModel.user.trips | orderBy:'-createdAt'">
+      <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}
+      <img src="assets/placeimg_240_240_nature.jpg" alt="" />
+      </a>
+    </div>
   </div>
-  <div class='trip-info' data-ng-repeat="trip in UserIndexViewModel.user.trips | orderBy:'-createdAt'">
-    <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}</a>
+  <div class='six columns'>
+    <h2>Add Trip:</h2>
+    <div class='form-container add-container' data-trip-form data-trip="UserIndexViewModel.newTrip"></div>
   </div>
-</div>
-<div class='six columns'>
-  <h2>Add Trip:</h2>
-  <div class='form-container add-container' data-trip-form data-trip="UserIndexViewModel.newTrip"></div>
 </div>

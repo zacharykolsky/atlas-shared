@@ -1,5 +1,80 @@
 *{margin:0;box-sizing:border-box}
-header{border:1px solid red;}
+
+body {
+  background: #E9E9E9;
+}
+
+/*===============================
+Header
+===============================*/
+
+header{
+  color: white;
+  background-color: black;
+}
+
+.profile-pic {
+  height: 50px
+}
+
+header ul {
+  float: right;
+}
+
+header li {
+  text-align: center;
+  line-height: 60px;
+  display: inline-block;
+}
+
+header li img {
+  vertical-align: middle;
+}
+
+/*===============================
+
+===============================*/
+
+.trip-info{
+  width: 248px
+  border-radius: 4px;
+  background-color: white;
+  padding: 6px;
+}
+.trip-info img {
+  display: block;
+  margin: 0;
+  width: auto;
+}
+
+.trip-info a {
+  display: block;
+}
+
+/*===============================
+
+===============================*/
+
+.tag-info {
+  position: absolute;
+  top: 200px;
+  z-index: 1;
+  color: blue;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo-lrg {
+  left: 50%;
+  height: 400px;
+}
+
+/*===============================
+
+===============================*/
+
+
 main{border:1px solid green;}
 footer{border:1px solid black;}
 #map{

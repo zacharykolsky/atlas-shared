@@ -6,6 +6,8 @@ var usersController = require('../controllers/userController');
 var locationsController = require("../controllers/locationsController");
 var tripsController = require("../controllers/tripsController");
 
+var Geocoder = require("node-open-geocoder");
+
 var router = express.Router();
 
 router.route("/profile.:format?")
@@ -18,8 +20,12 @@ router.route("/users/:id.:format?")
 router.route("/users.json")
   .get(usersController.getAllUsers)
 
-  router.route("/users/:id/friends")
-    .get(usersController.getFriends);
+router.route("/users/:id/friends")
+  .get(usersController.getFriends);
+
+router.route("/trips.:format?")
+  .get(tripsController.getTrips)
+  .post(tripsController.addTrip);
 
 router.route("/trips/:id.:format?")
   .get(tripsController.getTrip)
@@ -39,6 +45,18 @@ router.route("/trips/:tripId/locations/:id.:format?")
 router.route("/")
   .get(function(req,res){
     res.redirect("/login")
+  })
+
+router.route("/checkBounds")
+  .get(function(req,res){
+    var place = req.query.q;
+    var geo = new Geocoder();
+    geo.geocode(place, function(err,response){
+      // console.log(response)
+      var accepted = ["administrative","city","continent","country","island"]
+      var mod = response.filter(function(d){return accepted.indexOf(d.type)>-1 })
+      res.json(mod[0])
+    })
   })
 
 //facebook auth

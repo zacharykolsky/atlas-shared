@@ -29,7 +29,7 @@ var controller = {
     })
   },
   addTrip:function (req,res){
-    User.findById(req.params.id, function(err, user){
+    User.findById(req.user._id, function(err, user){
       if (!err){
         var info = req.body;
         info.userId = user._id;
@@ -39,7 +39,7 @@ var controller = {
             user.trips.push(newTrip._id);
             user.save(function(err){
               if (!err){
-                res.redirect("/trips/"+newTrip._id)  
+                res.redirect("/trips/"+newTrip._id)
                 // res.redirect("/users/"+user._id+"/trips/"+newTrip._id)
               }
             })

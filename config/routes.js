@@ -53,7 +53,7 @@ router.route("/users.:format?")
 router.route("/user/:id/friends")
   .get(usersController.getFriends);
 
-router.route("/users/:id/trips.:format?")
+router.route("/trips.:format?")
   .get(tripsController.getTrips)
   .post(tripsController.addTrip);
 

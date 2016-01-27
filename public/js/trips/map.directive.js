@@ -31,25 +31,41 @@
             var ne = L.latLng(bounding[1],bounding[3]);
             var bounds = L.latLngBounds(sw,ne);
             map.fitBounds(bounds)
+
+            var geocoderOptions = {
+              bounds: bounds,
+              // markers: true,
+              // layers: 'coarse',
+              expanded:true
+            }
+
+            var geocoder = L.control.geocoder('search-R7-i3bQ',geocoderOptions).addTo(map);
+            var geocontainer = document.getElementById("geocontainer")
+            geocontainer.appendChild(geocoder.getContainer());
+
+            geocoder.on("results", function(e){
+              console.log(e)
+            })
+
           })
 
 
         })
 
-        var geocoderOptions = {
-          bounds: true,
-          markers: false,
-          layers: 'coarse',
-          expanded:true
-        }
-
-        var geocoder = L.control.geocoder('search-R7-i3bQ',geocoderOptions).addTo(map);
-        var geocontainer = document.getElementById("geocontainer")
-        geocontainer.appendChild(geocoder.getContainer());
-
-        geocoder.on("select", function(e){
-          console.log(e)
-        })
+        // var geocoderOptions = {
+        //   bounds: true,
+        //   markers: false,
+        //   layers: 'coarse',
+        //   expanded:true
+        // }
+        //
+        // var geocoder = L.control.geocoder('search-R7-i3bQ',geocoderOptions).addTo(map);
+        // var geocontainer = document.getElementById("geocontainer")
+        // geocontainer.appendChild(geocoder.getContainer());
+        //
+        // geocoder.on("select", function(e){
+        //   console.log(e)
+        // })
 
       }
     }

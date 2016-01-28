@@ -4,6 +4,7 @@ var passport = require('passport');
 
 var usersController = require('../controllers/userController');
 var locationsController = require("../controllers/locationsController");
+var protipsController = require("../controllers/protipsController");
 var tripsController = require("../controllers/tripsController");
 var Geocoder = require("node-open-geocoder");
 
@@ -37,6 +38,16 @@ router.route("/trips/:id/locations.:format?")
 router.route("/trips/:tripId/locations/:id.:format?")
   .put(locationsController.updateTripLocation)
   .delete(locationsController.deleteTripLocation)
+
+// protips
+router.route("/trips/:id/protips.:format?")
+  .get(protipsController.getTripProtips)
+  .post(protipsController.addTripProtip)
+
+router.route("/trips/:tripId/protips/:id.:format?")
+  .put(protipsController.updateTripProtip)
+  .delete(protipsController.deleteTripProtip)
+
 
 router.route("/")
   .get(function(req,res){

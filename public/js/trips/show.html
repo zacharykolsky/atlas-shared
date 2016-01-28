@@ -32,5 +32,29 @@
       </div>
     </div>
   </div>
+  <div class="protip-section">
+    <h2>City Tips</h2>
+    <div class="protip-form" data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId">
+      <h4>What were those pro-tips you learned during your time in {{TripShowViewModel.trip.locale}}?</h4>
+      <div class='form-container add-container' data-protip-form data-protip="TripShowViewModel.newProtip"></div>
+    </div>
+    <div class="protip-show">
+      <div data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId">
+        <ol>
+          <div data-ng-repeat="protip in TripShowViewModel.protips">
+            <div data-show-protip data-protip="protip"></div>
+          </div>
+        </ol>
+      </div>
+      <div data-ng-hide="TripShowViewModel.profile._id == TripShowViewModel.trip.userId">
+        <ol>
+          <div data-ng-repeat="protip in TripShowViewModel.protips">
+            <li>{{protip.body}}</li>
+          </div>
+        </ol>
+      </div>
+    </div>
+
+  </div>
 </div>
 <!-- </div> -->

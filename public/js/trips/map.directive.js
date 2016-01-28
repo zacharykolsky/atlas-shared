@@ -25,8 +25,8 @@
 
         var feats = L.featureGroup().addTo(map);
         TripFactory.get({id:$state.params.id},function(trip){
-
-          $http.get("http://127.0.0.1:3000/trips/"+trip._id+"/locations.json").then(function(response){
+          var baseUrl = window.location.origin;
+          $http.get(baseUrl+"/trips/"+trip._id+"/locations.json").then(function(response){
             var places = response.data;
             places.forEach(function(place){
               var marker = L.marker(place.coords)
@@ -39,8 +39,8 @@
                 .addTo(feats)
             })
           })
-
-          $http.get("http://127.0.0.1:3000/checkBounds?q="+trip.locale).then(function(result){
+          var baseUrl = window.location.origin;
+          $http.get(baseUrl+"/checkBounds?q="+trip.locale).then(function(result){
             if (result.data){
               var bounding = result.data.boundingbox;
               var sw = L.latLng(bounding[0],bounding[2]);

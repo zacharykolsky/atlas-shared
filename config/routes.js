@@ -10,6 +10,37 @@ var Geocoder = require("node-open-geocoder");
 
 var router = express.Router();
 
+router.route("/")
+.get(function(req,res){
+  res.redirect("/login")
+})
+
+router.route('/about')
+  .get(function(req,res) {res.render("about.hbs")});
+
+//facebook auth, login/logout
+router.get('/auth/validate', usersController.validateUser);
+
+router.route('/signup')
+  .get(usersController.getSignup)
+  .post(usersController.postSignup);
+
+router.route('/login')
+  .get(usersController.getLogin)
+  .post(usersController.postLogin);
+
+router.route("/logout")
+  .get(usersController.getLogout);
+
+router.route('/auth/facebook')
+  .get(passport.authenticate('facebook'));
+
+router.route('/auth/facebook/callback')
+  .get(passport.authenticate('facebook', {
+      successRedirect: '/profile',
+      failureRedirect: '/login'
+  }));
+
 router.route("/profile.:format?")
   .get(usersController.getUserProfile)
 
@@ -64,28 +95,5 @@ router.route("/checkBounds")
       res.json(mod[0])
     })
   })
-
-//facebook auth, login/logout
-router.get('/auth/validate', usersController.validateUser);
-
-router.route('/signup')
-  .get(usersController.getSignup)
-  .post(usersController.postSignup);
-
-router.route('/login')
-  .get(usersController.getLogin)
-  .post(usersController.postLogin);
-
-router.route("/logout")
-  .get(usersController.getLogout);
-
-router.route('/auth/facebook')
-  .get(passport.authenticate('facebook'));
-
-router.route('/auth/facebook/callback')
-  .get(passport.authenticate('facebook', {
-      successRedirect: '/profile',
-      failureRedirect: '/login'
-  }));
 
 module.exports = router;

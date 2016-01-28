@@ -127,6 +127,27 @@ header li img {
 
 ===============================*/
 
+.form-left {
+  margin-left: 30px
+}
+
+.about:first-child{
+  margin-top: 60px;
+}
+
+.about:last-child{
+  margin-bottom: 60px;
+}
+
+.about h2 {
+  text-align: center;
+  border-bottom: 2px solid rgb(75, 176, 203)
+}
+
+/*===============================
+
+===============================*/
+
 .ng-scope:first-child {
   margin-top: 60px;
 }

@@ -76,8 +76,9 @@
         <div class="one-half column">
           <ul>
           {{#if currentUser}}
-            <li>{{currentUser.name}}</li>
-            <li><img class="profile-pic" src="{{currentUser.photo}}" alt=""></li>
+
+              <li><a href="/profile">{{currentUser.name}}</a></li>
+              <li><a href="/profile"><img class="profile-pic" src="{{currentUser.photo}}" alt=""></a></li>
             <li><a class="btn btn-primary" href="/logout" target="_self">Logout</a></li>
           {{else}}
           <li>

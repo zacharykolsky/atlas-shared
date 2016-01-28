@@ -1,5 +1,4 @@
 <div class="container">
-  <p>{{UserIndexViewModel.user.name}} is my name</p>
   <div class='six columns'>
     <h2>Your Trips:</h2>
     <div class='no-trips' data-ng-show="UserIndexViewModel.user.trips.length==0">
@@ -7,7 +6,8 @@
     </div>
     <div class='trip-info u-cf' data-ng-repeat="trip in UserIndexViewModel.user.trips | orderBy:'-createdAt'">
       <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}
-      <img src="assets/placeimg_240_240_nature.jpg" alt="" />
+      <img ng-src="http://lorempixel.com/240/240/city/{{$index}}" alt="" />
+      <!-- <img src="assets/placeimg_240_240_nature.jpg" alt="" /> -->
       </a>
     </div>
   </div>

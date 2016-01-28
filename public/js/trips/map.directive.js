@@ -30,6 +30,11 @@
             var places = response.data;
             places.forEach(function(place){
               var marker = L.marker(place.coords)
+              .setIcon(L.divIcon({
+                  className: 'marker',
+                  iconSize:[30,50],
+                  popupAnchor:[0,0]
+              }))
                 .bindPopup(place.desc)
                 .addTo(feats)
             })

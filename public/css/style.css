@@ -160,6 +160,11 @@ input{
   border:2px solid blue;
 }
 
+.marker{
+  background-image:url("../assets/logo_white.svg");
+  background-repeat:no-repeat;
+}
+
 /*form[name=locationForm] label.radio{
   display:inline-block;
   padding:3px;

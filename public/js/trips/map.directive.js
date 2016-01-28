@@ -45,15 +45,15 @@
             var georesults = document.getElementById("georesults");
 
             geocoder.on("select", function(e){
-              console.log(e)
-              var place = document.querySelector("input[name=place]");
-              place.className = "ng-dirty ng-valid ng-valid-required ng-touched ng-valid-parse"
-              place.value = e.feature.properties.label;
+              // console.log(e)
+              // var place = document.querySelector("input[name=place]");
+              // place.className = "ng-dirty ng-valid ng-valid-required ng-touched ng-valid-parse"
+              // place.value = e.feature.properties.label;
               var lat = georesults.querySelector("input[name=lat]");
-              lat.className = "ng-dirty ng-valid ng-valid-required ng-touched ng-valid-parse"
+              // lat.className = "ng-dirty ng-valid ng-valid-required ng-touched ng-valid-parse"
               lat.value = e.latlng.lat;
               var lon = georesults.querySelector("input[name=lon]");
-              lon.className = "ng-dirty ng-valid ng-valid-required ng-touched ng-valid-parse"
+              // lon.className = "ng-dirty ng-valid ng-valid-required ng-touched ng-valid-parse"
               lon.value = e.latlng.lng;
             })
           })

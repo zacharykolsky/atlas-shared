@@ -23,9 +23,15 @@
         // }
         // console.log(scope.location)
         scope.create = function(){
-          console.log(scope.location);
-          scope.location.lat = document.querySelector("input[name=lat]").value;
-          scope.location.lon = document.querySelector("input[name=lon]").value
+          // console.log(scope.location);
+          // scope.location.lat = document.querySelector("input[name=lat]").value;
+          // scope.location.lon = document.querySelector("input[name=lon]").value;
+          // scope.location.coords = [parseFloat(scope.location.lat),parseFloat(scope.location.lon)];
+          var place = document.querySelector(".leaflet-pelias-input").value;
+          var lat = document.querySelector("input[name=lat]").value;
+          var lon = document.querySelector("input[name=lon]").value;
+          scope.location.name = place;
+          scope.location.coords = [parseFloat(lat),parseFloat(lon)];
           scope.location.$save({tripId:tripId},function(response){
             // console.log(response)
             $state.go("tripsShow", {id: tripId}, {reload: true});

@@ -1,9 +1,14 @@
 <div class="container">
-  <h2>Your Trips:</h2>
-  <div class='no-trips' data-ng-show="UserIndexViewModel.user.trips.length==0">
-    <p>You have no trips.</p>
+  <div class='row'>
+    <h2>Add Trip:</h2>
+    <div class='form-container add-container' data-trip-form data-trip="UserIndexViewModel.newTrip"></div>
   </div>
+
   <div class="trips row">
+    <h2>Your Trips:</h2>
+    <div class='no-trips' data-ng-show="UserIndexViewModel.user.trips.length==0">
+      <p>You have no trips.</p>
+    </div>
     <div class='three columns' data-ng-repeat="trip in UserIndexViewModel.user.trips | orderBy:'-createdAt'">
       <div class='trip-info'>
         <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}
@@ -12,19 +17,7 @@
       </div>
     </div>
   </div>
-  <!-- <div class="trips row">
-      <div class='trip-info u-cf' data-ng-repeat="trip in UserIndexViewModel.user.trips | orderBy:'-createdAt'">
-        <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}
-          <img ng-src="http://lorempixel.com/240/240/city/{{$index}}" alt="" />
-        </a>
-      </div>
-    </div> -->
-  <div class='row'>
-    <h2>Add Trip:</h2>
-    <div class='form-container add-container' data-trip-form data-trip="UserIndexViewModel.newTrip"></div>
-  </div>
   <div data-ng-repeat="user in UserIndexViewModel.users">
     <a data-ui-sref="userShow({id:user._id})">{{user.name}}</a>
   </div>
-</div>
 </div>

@@ -1,17 +1,13 @@
-
 "use strict";
 
 (function(){
   angular
   .module("locations")
   .directive("showLocation",[
-    "$state",
-    "$stateParams",
-    "LocationFactory",
     ShowDirectiveFunction
   ])
 
-  function ShowDirectiveFunction($state,$stateParams,LocationFactory){
+  function ShowDirectiveFunction(){
     return {
       templateUrl:"js/locations/_show.html",
       replace: true,

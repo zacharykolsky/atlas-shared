@@ -4,32 +4,17 @@
     <!-- geocoder should get appended here -->
   </fieldset>
   <fieldset id="georesults">
-    <!-- <input type="text" name="place" data-ng-model="location.place" value="" > -->
     <input type="text" name="lat" >
     <input type="text" name="lon" >
   </fieldset>
   <fieldset>
-    <label for="category">Places to Eat</label>
-    <input required type="radio" name="category" data-ng-model="location.category" value="places to eat"/>
-    <label for="category">Places to Stay</label>
-    <input required type="radio" name="category" data-ng-model="location.category" value="places to stay"/>
-    <label for="category">Places to See</label>
-    <input required type="radio" name="category" data-ng-model="location.category" value="places to see"/>
+    <label>Places to Eat<input required type="radio" name="category" data-ng-model="location.category" value="places to eat"/></label>
+    <label>Places to Stay<input required type="radio" name="category" data-ng-model="location.category" value="places to stay"/></label>
+    <label>Places to See<input required type="radio" name="category" data-ng-model="location.category" value="places to see"/></label>
   </fieldset>
   <fieldset>
-
-    <!-- <label for="place">Where did you go?</label>
-    <input required type="text" name="place" data-ng-model="location.name" placeholder="Name of establishment"/> -->
-
-    <!-- <span class='invalid' data-ng-show="locationForm.type.$dirty && locationForm.type.$invalid">
-      <span data-ng-show="locationForm.type.$error.required">Type is required.</span>
-    </span> -->
-  </fieldset>
-  <fieldset>
-
     <label for="desc">Why was it amazing?</label>
     <input required type="text" name="desc" data-ng-model="location.desc" placeholder="This place is bananas because..."/>
-
     <!-- <span class='invalid' data-ng-show="locationForm.type.$dirty && locationForm.type.$invalid">
     <span data-ng-show="locationForm.type.$error.required">Type is required.</span>
   </span> -->
@@ -42,4 +27,3 @@
   <button type="button" data-ng-click="delete()">Delete</button>
 </div>
 </form>
-</div>

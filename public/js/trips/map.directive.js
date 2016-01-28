@@ -84,6 +84,7 @@
                 .bindPopup(place.desc)
                 .addTo(feats)
             })
+            map.fitBounds(feats.getBounds())
           })
         }
 

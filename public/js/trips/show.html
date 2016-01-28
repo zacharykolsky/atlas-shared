@@ -4,7 +4,7 @@
   <p>{{TripShowViewModel.trip.desc}}</p>
   <p>{{TripShowViewModel.trip.userId}}</p>
 </div>
-<div data-map id="map"></div>
+<div data-map id="map" ></div>
 <div data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId">
   <div class='form-container add-container' data-location-form data-location="TripShowViewModel.newLocation"></div>
   <div class='place-info' data-ng-repeat="location in TripShowViewModel.locations">

@@ -40,21 +40,12 @@ var controller = {
             user.save(function(err){
               if (!err){
                 res.redirect("/trips/"+newTrip._id)
-                // res.redirect("/users/"+user._id+"/trips/"+newTrip._id)
               }
             })
           }
         })
       }
     })
-    // var info = req.body;
-    // info.userId = req.user._id;
-    // console.log(req.params.id)
-    // console.log(info)
-    // var newTrip = new Trip(info);
-    // newTrip.save(function(err){
-    //   res.redirect("/trips/"+newTrip._id)
-    // })
   },
   updateTrip:function(req,res){
     Trip.findById(req.params.id, function(err, trip){
@@ -88,14 +79,10 @@ var controller = {
   },
   addTripLocation:function(req,res){
     Trip.findById(req.params.id,function(err,trip){
-      // console.log(trip)
-      // console.log(req.body);
       var info = req.body;
-      // info.coords = [req.body.lat,req.body.lon]
       info.createdAt = new Date();
       info.userId = trip.userId;
       info.tripId = req.params.id;
-      console.log(info);
       newLoc = new Location(info)
       newLoc.save(function(err,loc){
         if(!err){

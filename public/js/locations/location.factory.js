@@ -4,12 +4,11 @@
   angular
   .module("locations")
   .factory("LocationFactory", [
-    "$resource","$state",
+    "$resource",
     LocationFactoryFunction
   ]);
 
-  function LocationFactoryFunction($resource,$state){
-    // var baseURL = window.location.href;
+  function LocationFactoryFunction($resource){
     return $resource("http://127.0.0.1:3000/trips/:tripId/locations/:id.json", {tripId:'@tripId'}, {
       update: {method: "PUT"}
     });

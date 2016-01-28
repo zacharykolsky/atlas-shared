@@ -32,9 +32,9 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(router)
+app.use(router);
 
 var port = process.env.PORT || 3000;
 app.listen(port , function(){
-  console.log("app listening on "+port)
+  console.log("app listening on "+port);
 })

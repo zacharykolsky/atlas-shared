@@ -43,7 +43,12 @@ var controller = {
             user.trips.push(newTrip._id);
             user.save(function(err){
               if (!err){
-                res.redirect("/trips/"+newTrip._id)
+                if (req.params.format){
+                  res.json(newTrip)
+                }else{
+                  res.render("index.hbs")
+                }
+                // res.redirect("/trips/"+newTrip._id)
               }
             })
           }

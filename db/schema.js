@@ -16,17 +16,17 @@ var LocationSchema = new Schema({
 })
 
 var UserSchema = mongoose.Schema({
-  local : {
-    email        : String,
-    password     : String
+  local: {
+    email: String,
+    password: String
   },
   facebook : {
     id: String,
     token: String,
     provider: String
   },
-  name         : String,
-  photo        : String,
+  name: String,
+  photo: String,
   trips:[]
 });
 

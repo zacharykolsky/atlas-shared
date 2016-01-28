@@ -21,13 +21,13 @@
       link: function(scope){
         L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhc2VncnViZXIiLCJhIjoidV9tdHNYSSJ9.RRyvDLny4YwDwzPCeOJZrA';
         var map = L.mapbox.map('map', 'mapbox.streets');
+        map.setView([40,-85],4)
 
         var feats = L.featureGroup().addTo(map);
         TripFactory.get({id:$state.params.id},function(trip){
 
           $http.get("http://127.0.0.1:3000/trips/"+trip._id+"/locations.json").then(function(response){
             var places = response.data;
-            console.log(places)
             places.forEach(function(place){
               var marker = L.marker(place.coords)
                 .bindPopup(place.desc)
@@ -36,11 +36,13 @@
           })
 
           $http.get("http://127.0.0.1:3000/checkBounds?q="+trip.locale).then(function(result){
-            var bounding = result.data.boundingbox;
-            var sw = L.latLng(bounding[0],bounding[2]);
-            var ne = L.latLng(bounding[1],bounding[3]);
-            var bounds = L.latLngBounds(sw,ne);
-            map.fitBounds(bounds)
+            if (result.data){
+              var bounding = result.data.boundingbox;
+              var sw = L.latLng(bounding[0],bounding[2]);
+              var ne = L.latLng(bounding[1],bounding[3]);
+              var bounds = L.latLngBounds(sw,ne);
+              map.fitBounds(bounds)
+            }
 
             var geocoderOptions = {
               bounds: bounds,

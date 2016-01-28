@@ -26,16 +26,16 @@
         }
         scope.update = function(){
           scope.trip.$update({id: scope.trip._id}, function(response){
-            $state.go("tripsShow", {id: response._id}, {reload: false});
+            $state.go("tripsShow", {id: response._id}, {reload: true});
           });
         }
         scope.delete = function(){
           scope.trip.$delete({id: scope.trip._id}, function(){
-            $state.go("tripsIndex", {}, {reload: true});
+            $state.go("userIndex", {}, {reload: true});
           });
         }
         scope.cancel = function(){
-          $state.go("tripsIndex", {}, {reload: true});
+          $state.go("userIndex", {}, {reload: true});
         }
       }
     }

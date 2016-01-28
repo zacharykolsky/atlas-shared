@@ -42,10 +42,18 @@
             var geocontainer = document.getElementById("geocontainer")
             geocontainer.appendChild(geocoder.getContainer());
 
+            var georesults = document.getElementById("georesults");
+
             geocoder.on("select", function(e){
-              var lat = geocontainer.querySelector("input[name=lat]");
+              console.log(e)
+              var place = document.querySelector("input[name=place]");
+              place.className = "ng-dirty ng-valid ng-valid-required ng-touched ng-valid-parse"
+              place.value = e.feature.properties.label;
+              var lat = georesults.querySelector("input[name=lat]");
+              lat.className = "ng-dirty ng-valid ng-valid-required ng-touched ng-valid-parse"
               lat.value = e.latlng.lat;
-              var lon = geocontainer.querySelector("input[name=lon]");
+              var lon = georesults.querySelector("input[name=lon]");
+              lon.className = "ng-dirty ng-valid ng-valid-required ng-touched ng-valid-parse"
               lon.value = e.latlng.lng;
             })
           })

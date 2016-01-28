@@ -7,14 +7,16 @@ var Schema = mongoose.Schema,
 
 var LocationSchema = new Schema({
   createdAt: Date,
-  createdBy: String,
+  // createdBy: String,
   name: String,
   desc: String,
   tripId: String,
-  category:String,
+  userId: String,
+  category: String,
   lat: String,
-  lon: String,
-  coords: Array
+  lon: String
+  // place:String
+  // coords: Array
 })
 
 var UserSchema = mongoose.Schema({

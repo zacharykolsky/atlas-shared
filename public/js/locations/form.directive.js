@@ -18,13 +18,16 @@
       },
       link: function(scope){
         var tripId = $state.params.id;
-        if (!scope.location){
-          scope.location = new LocationFactory();
-        }
-        console.log(scope.location)
+        // if (!scope.location){
+        //   scope.location = new LocationFactory();
+        // }
+        // console.log(scope.location)
         scope.create = function(){
+          console.log(scope.location);
+          scope.location.lat = document.querySelector("input[name=lat]").value;
+          scope.location.lon = document.querySelector("input[name=lon]").value
           scope.location.$save({tripId:tripId},function(response){
-            console.log(response)
+            // console.log(response)
             $state.go("tripsShow", {id: tripId}, {reload: true});
           });
         }

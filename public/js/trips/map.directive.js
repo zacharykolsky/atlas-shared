@@ -25,6 +25,20 @@
 
         var feats = L.featureGroup().addTo(map);
 
+        function makePopup(place){
+          var div = document.createElement("div")
+          var p1 = document.createElement("p")
+          p1.textContent = place.name;
+          var p2 = document.createElement("p")
+          p2.textContent = place.desc;
+          var link = document.createElement("a")
+          // link.data-ui-sref = "TripShow("+place.tripId+")"
+          // link.textContent =
+          div.appendChild(p1)
+          div.appendChild(p2)
+          return div;
+        }
+
         if ($state.params.id){
           TripFactory.get({id:$state.params.id},function(trip){
             var baseUrl = window.location.origin;
@@ -37,7 +51,7 @@
                 //     iconSize:[30,50],
                 //     popupAnchor:[0,0]
                 // }))
-                  .bindPopup(place.desc)
+                  .bindPopup(makePopup(place))
                   .addTo(feats)
               })
             })
@@ -60,7 +74,7 @@
               }
 
               var geocoder = L.control.geocoder('search-R7-i3bQ',geocoderOptions).addTo(map);
-              var geocontainer = document.getElementById("geocontainer")
+              var geocontainer = document.querySelector(".add-container #geocontainer")
               geocontainer.appendChild(geocoder.getContainer());
 
               var georesults = document.getElementById("georesults");
@@ -82,7 +96,7 @@
               //     iconSize:[30,50],
               //     popupAnchor:[0,0]
               // }))
-                .bindPopup(place.desc)
+                .bindPopup(makePopup(place))
                 .addTo(feats)
             })
             map.fitBounds(feats.getBounds())

@@ -55,7 +55,7 @@ header li a {
   display: block;
   margin: 0 auto;
   margin-top: 10px;
-  width: 180px;
+  width: 200px;
   height: 36px;
   background-color: white;
   line-height: 36px;
@@ -95,10 +95,12 @@ header li img {
 .trip-info img {
   display: block;
   margin: 0;
-  width: auto;
+  min-width: 100%;
 }
 
 .trip-info a {
+  text-decoration: none;
+  color: inherit;
   display: block;
 }
 
@@ -125,8 +127,12 @@ header li img {
 
 ===============================*/
 
-main {
-  margin: 60px 0;
+.ng-scope:first-child {
+  margin-top: 60px;
+}
+
+.ng-scope:last-child {
+  margin-bottom: 60px;
 }
 
 footer{

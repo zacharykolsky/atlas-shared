@@ -1,20 +1,36 @@
 <div class="container">
-  <div class='form-container add-container' data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId" data-trip-form data-trip="TripShowViewModel.trip"></div>
-  <div data-ng-hide="TripShowViewModel.profile._id == TripShowViewModel.trip.userId" >
-    <p>Trip: {{TripShowViewModel.trip.title}}</p>
-    <p>Description: {{TripShowViewModel.trip.desc}}</p>
-  </div>
-  <div data-map id="map"></div>
-  <div data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId">
-    <div class='form-container add-container' data-location-form data-location="TripShowViewModel.newLocation"></div>
-    <div class='place-info' data-ng-repeat="location in TripShowViewModel.locations">
-      <div data-show-location data-location="location"></div>
-    </div>
-  </div>
-  <div data-ng-hide="TripShowViewModel.profile._id == TripShowViewModel.trip.userId" >
-    <div class='place-info' data-ng-repeat="location in TripShowViewModel.locations">
-      <p>{{location.category}}</p>
-      <p>{{location.name}} - {{location.desc}}</p>
+  <div class="row">
+    <div class='form-container add-container' data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId" data-trip-form data-trip="TripShowViewModel.trip"></div>
+    <div data-ng-hide="TripShowViewModel.profile._id == TripShowViewModel.trip.userId">
+      <p>Trip: {{TripShowViewModel.trip.title}}</p>
+      <p>Description: {{TripShowViewModel.trip.desc}}</p>
     </div>
   </div>
 </div>
+
+<div class="row">
+  <div class="one-third column">
+    <div data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId">
+      <div class='form-container add-container' data-location-form data-location="TripShowViewModel.newLocation"></div>
+    </div>
+  </div>
+
+  <div class="two-thirds column">
+    <div data-map id="map"></div>
+  </div>
+
+</div>
+<div class="container">
+  <div class="row">
+    <div class='place-info' data-ng-repeat="location in TripShowViewModel.locations">
+      <div data-show-location data-location="location"></div>
+    </div>
+    <div data-ng-hide="TripShowViewModel.profile._id == TripShowViewModel.trip.userId">
+      <div class='place-info' data-ng-repeat="location in TripShowViewModel.locations">
+        <p>{{location.category}}</p>
+        <p>{{location.name}} - {{location.desc}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- </div> -->

@@ -3,6 +3,11 @@ var Location = require("../models/location")
 var User = require("../models/user")
 
 var controller = {
+  getAllLocations: function(req,res){
+    Location.find({}, function(err,locations){
+      res.json(locations)
+    })
+  },
   getTripLocations:function(req,res){
     Trip.findById(req.params.id,function(err,trip){
       Location.find({'_id': {$in: trip.locations}}).then(function(places){

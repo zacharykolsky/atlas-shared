@@ -10,6 +10,6 @@
   ]);
 
   function TripIndexControllerFunction(TripFactory,$http){
-    this.trips = TripFactory.query();//$http.get("http://127.0.0.1:3000/trips/all.json")
+    this.trips = TripFactory.query();
   }
 }());

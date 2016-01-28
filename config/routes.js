@@ -39,6 +39,9 @@ router.route("/trips/:tripId/locations/:id.:format?")
   .put(locationsController.updateTripLocation)
   .delete(locationsController.deleteTripLocation)
 
+router.route("/locations.json")
+  .get(locationsController.getAllLocations)
+
 // protips
 router.route("/trips/:id/protips.:format?")
   .get(protipsController.getTripProtips)

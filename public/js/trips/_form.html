@@ -24,7 +24,7 @@
   </fieldset>
   <button type="button" data-ng-if="!trip._id" data-ng-click="create()" ng-disabled="tripForm.$invalid">Create</button>
   <div data-ng-if="trip._id">
-    <button type="button" data-ng-click="cancel()">cancel</button>
+    <button type="button" data-ng-click="cancel()">Back</button>
     <button type="button" ng-disabled="tripForm.$invalid" data-ng-click="update()">Update</button>
     <button type="button" data-ng-click="delete()">Delete</button>
   </div>

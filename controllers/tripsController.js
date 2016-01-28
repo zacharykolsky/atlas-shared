@@ -69,59 +69,6 @@ var controller = {
         })
       })
     })
-  },
-  getTripLocations:function(req,res){
-    Trip.findById(req.params.id,function(err,trip){
-      Location.find({'_id': {$in: trip.locations}}).then(function(places){
-        res.json(places)
-      })
-    })
-  },
-  addTripLocation:function(req,res){
-    Trip.findById(req.params.id,function(err,trip){
-      var info = req.body;
-      info.createdAt = new Date();
-      info.userId = trip.userId;
-      info.tripId = req.params.id;
-      newLoc = new Location(info)
-      newLoc.save(function(err,loc){
-        if(!err){
-          trip.locations.push(loc._id)
-          trip.save(function(err,doc){
-            if(!err){
-              res.json(loc)
-            }
-          })
-        }
-      })
-    })
-  },
-  updateTripLocation:function(req,res){
-    Location.findById(req.params.id, function(err,loc){
-      loc.category = req.body.category;
-      loc.name = req.body.name;
-      loc.desc = req.body.desc;
-      loc.save(function(err){
-        if(!err){
-          res.json(loc)
-        }
-      })
-    })
-  },
-  deleteTripLocation:function(req,res){
-    Location.remove({_id: req.params.id}, function(err){
-      if(!err){
-        Trip.findById(req.params.tripId, function(err, trip){
-          var idx = trip.locations.indexOf(req.params.id);
-          trip.locations.splice(idx,1);
-          trip.save(function(err, doc){
-            if (!err){
-              res.json({deleted: true})
-            }
-          })
-        })
-      }
-    })
   }
 }
 

@@ -16,7 +16,6 @@
         trip: "="
       },
       link: function(scope){
-        // console.log($state)
         if (!scope.trip){
           scope.trip = new TripFactory();
         }

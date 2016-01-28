@@ -1,17 +1,17 @@
 var fs = require("fs");
 var env = fs.existsSync("./env.js") ? require("./env") : process.env;
 
-var express        = require("express");
-var app            = express();
-var flash          = require("connect-flash");
-var hbs            = require("hbs");
-var bodyParser     = require("body-parser");
-var passport       = require("passport");
-var cookieParser   = require("cookie-parser");
-var session        = require("express-session");
+var express = require("express");
+var app = express();
+var flash = require("connect-flash");
+var hbs = require("hbs");
+var bodyParser = require("body-parser");
+var passport = require("passport");
+var cookieParser = require("cookie-parser");
+var session = require("express-session");
 var methodOverride = require('method-override');
 
-var router         = require("./config/actualroutes");
+var router = require("./config/routes");
 
 app.set('view engine', 'hbs');
 app.set("views","./views");
@@ -38,5 +38,3 @@ var port = process.env.PORT || 3000;
 app.listen(port , function(){
   console.log("app listening on "+port)
 })
-
-// app.use(router);

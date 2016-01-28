@@ -46,6 +46,10 @@ header li {
   display: inline-block;
 }
 
+header li:nth-child(1n+1) {
+  margin: 0 4px
+}
+
 header li a {
   text-decoration: none;
   color: inherit;

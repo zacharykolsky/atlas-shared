@@ -16,7 +16,7 @@ router.route("/")
 })
 
 router.route('/about')
-  .get(function(req,res) {res.render("about.hbs")});
+  .get(function(req,res) {res.render("about.hbs")})
 
 //facebook auth, login/logout
 router.get('/auth/validate', usersController.validateUser);

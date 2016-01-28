@@ -25,7 +25,11 @@ var controller = {
   },
   getTrip:function(req,res){
     Trip.findById(req.params.id,function(err,doc){
-      res.json(doc)
+      if (req.params.format){
+        res.json(doc)
+      }else{
+        res.render("index.hbs")
+      }
     })
   },
   addTrip:function (req,res){

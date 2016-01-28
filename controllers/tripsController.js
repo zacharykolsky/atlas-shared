@@ -1,5 +1,6 @@
 var Trip = require("../models/trip")
 var Location = require("../models/location")
+var Protip = require("../models/protip")
 var User = require("../models/user")
 
 var controller = {

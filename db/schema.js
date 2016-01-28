@@ -15,6 +15,13 @@ var LocationSchema = new Schema({
   coords: Array
 })
 
+var ProtipSchema = new Schema({
+  createdAt: Date,
+  body: String,
+  tripId: String,
+  userId: String
+})
+
 var UserSchema = mongoose.Schema({
   local: {
     email: String,
@@ -46,9 +53,11 @@ var TripSchema = new Schema({
   desc:String,
   locale:String,
   locations: [],
+  protips: [],
   userId: String
 })
 
 mongoose.model("Location", LocationSchema);
+mongoose.model("Protip", ProtipSchema);
 mongoose.model("Trip", TripSchema);
 mongoose.model("User", UserSchema)

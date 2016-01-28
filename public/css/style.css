@@ -189,3 +189,27 @@ form[name=locationForm] input:checked ~ label.radio{
 form[name=locationForm] label.radio input{
   display:none;
 }*/
+
+/*===============================
+Protips
+===============================*/
+
+ol {
+    counter-reset: item;
+    list-style-type: decimal;
+    list-style: none;
+}
+
+ol li:before {
+    content: 'TIP ' counter(item, decimal) '. ';
+    counter-increment: item;
+}
+
+.protip {
+  padding: 20px;
+  border: 2px solid #1094de;
+}
+
+.protip-show {
+  float: left;
+}

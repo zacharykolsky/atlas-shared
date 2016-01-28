@@ -9,7 +9,6 @@
   ]);
 
   function UserFactoryFunction($resource,$http){
-    // var baseURL = window.location.href;
     return $resource("http://127.0.0.1:3000/users/:id.json", {}, {
       update: {method: "PUT"}
     });

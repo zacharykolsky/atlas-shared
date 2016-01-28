@@ -5,38 +5,15 @@
   .module("users")
   .controller("UserIndexController", [
     "TripFactory",
-    "LocationFactory",
     "ProfileFactory",
-    "UserTripFactory",
     "UserFactory",
-    "$stateParams",
-    "$http",
     UserIndexControllerFunction
   ]);
 
-  function UserIndexControllerFunction(TripFactory, LocationFactory, ProfileFactory, UserTripFactory,UserFactory, $stateParams, $http){
+  function UserIndexControllerFunction(TripFactory,ProfileFactory,UserFactory){
     this.user = ProfileFactory.get({},function(user){
-      user.newTrip = new TripFactory({userId:user._id})
+      user.newTrip = new TripFactory()
     });
-
     this.users = UserFactory.query();
-    // this.newTrip = new TripFactory({})
-    // this.user = {};
-    // this.trips = [];
-
-    // console.log(this)
-    // new UserFactory.get({}).then(function(user){
-    //   console.log(this)
-    //   this.user = user;
-    //   new UserTripFactory.get({userId: scope.user._id}).then(function(trips){
-    //     this.trips = trips;
-    //   }.bind(this))
-    // });
-    // this.trips = new UserTripFactory.get({userId: this.user._id});
-    // console.log(this.trips)
-
-    // this.newTrip = new TripFactory();
-    // this.trip = TripFactory.get({id: $stateParams.id});
-    // this.locations = LocationFactory.query({tripId: $stateParams.id});
   }
 }());

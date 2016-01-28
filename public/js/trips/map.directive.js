@@ -23,11 +23,28 @@
         var map = L.mapbox.map('map', 'mapbox.streets');
         map.setView([40,-85],4)
 
+        var baseUrl = window.location.origin;
         var feats = L.featureGroup().addTo(map);
+
+        function makePopup(place,makeLink){
+          var div = document.createElement("div")
+          var p1 = document.createElement("p")
+          p1.textContent = place.name;
+          var p2 = document.createElement("p")
+          p2.textContent = place.desc;
+          div.appendChild(p1)
+          div.appendChild(p2)
+          if(makeLink){
+            var link = document.createElement("a")
+            link.href = baseUrl+"/trips/"+place.tripId;
+            link.textContent = "View Trip";
+            div.appendChild(link)
+          }
+          return div;
+        }
 
         if ($state.params.id){
           TripFactory.get({id:$state.params.id},function(trip){
-            var baseUrl = window.location.origin;
             $http.get(baseUrl+"/trips/"+trip._id+"/locations.json").then(function(response){
               var places = response.data;
               places.forEach(function(place){
@@ -37,7 +54,7 @@
                 //     iconSize:[30,50],
                 //     popupAnchor:[0,0]
                 // }))
-                  .bindPopup(place.desc)
+                  .bindPopup(makePopup(place,false))
                   .addTo(feats)
               })
             })
@@ -60,7 +77,7 @@
               }
 
               var geocoder = L.control.geocoder('search-R7-i3bQ',geocoderOptions).addTo(map);
-              var geocontainer = document.getElementById("geocontainer")
+              var geocontainer = document.querySelector(".add-container #geocontainer")
               geocontainer.appendChild(geocoder.getContainer());
 
               var georesults = document.getElementById("georesults");
@@ -73,7 +90,7 @@
             })
           })
         }else{
-          $http.get("http://127.0.0.1:3000/locations.json").then(function(response){
+          $http.get(baseUrl+"/locations.json").then(function(response){
             var places = response.data;
             places.forEach(function(place){
               var marker = L.marker(place.coords)
@@ -82,7 +99,7 @@
               //     iconSize:[30,50],
               //     popupAnchor:[0,0]
               // }))
-                .bindPopup(place.desc)
+                .bindPopup(makePopup(place,true))
                 .addTo(feats)
             })
             map.fitBounds(feats.getBounds())

@@ -1,11 +1,13 @@
-<div data-map ></div>
-<div class="trips row">
-  <h2>Explore Trips:</h2>
-  <div class='three columns' data-ng-repeat="trip in TripIndexViewModel.trips | orderBy:'-createdAt'">
-    <div class='trip-info'>
-      <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}
-        <img class="u-max-full-width" ng-src="http://lorempixel.com/400/400/city/{{$index}}" alt="" />
-      </a>
+<div class="container">
+  <div data-map ></div>
+  <div class="trips row">
+    <h2>Explore Trips:</h2>
+    <div class='three columns' data-ng-repeat="trip in TripIndexViewModel.trips | orderBy:'-createdAt'">
+      <div class='trip-info'>
+        <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}
+          <img class="u-max-full-width" ng-src="http://lorempixel.com/400/400/city/{{$index}}" alt="" />
+        </a>
+      </div>
     </div>
   </div>
 </div>

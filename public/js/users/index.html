@@ -1,6 +1,8 @@
 <div class="container">
-  <div class='row'>
+  <div class="button" ng-hide='showAdd' ng-click="showAdd = !showAdd">Add Trip</div>
+  <div class='row' ng-show='showAdd'>
     <h2>Add Trip:</h2>
+    <div class="button" ng-click="showAdd = !showAdd">Cancel</div>
     <div class='form-container add-container' data-trip-form data-trip="UserIndexViewModel.user.newTrip"></div>
   </div>
 

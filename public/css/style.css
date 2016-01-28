@@ -159,3 +159,17 @@ input{
 .selected{
   border:2px solid blue;
 }
+
+/*form[name=locationForm] label.radio{
+  display:inline-block;
+  padding:3px;
+  border:1px solid red;
+}
+
+form[name=locationForm] input:checked ~ label.radio{
+  border:1px solid blue;
+}
+
+form[name=locationForm] label.radio input{
+  display:none;
+}*/

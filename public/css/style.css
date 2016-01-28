@@ -1,6 +1,7 @@
 *{margin:0;box-sizing:border-box}
 
 body {
+  font-family: 'Comfortaa', sans-serif;
   background: #E9E9E9;
 }
 
@@ -11,6 +12,14 @@ Header
 header{
   color: white;
   background-color: black;
+}
+
+.logo-sm {
+  height: 40px;
+}
+
+header h1 {
+  display: inline;
 }
 
 .profile-pic {
@@ -64,6 +73,16 @@ header li img {
   border: 1px solid rgb(209, 209, 209);
   border-radius: 4px;
 }
+
+.trips.row .column,
+.trips.row .columns {
+  margin: 0;
+}
+
+.trips .three.columns {
+  width: 25%;
+}
+
 .trip-info img {
   display: block;
   margin: 0;
@@ -82,7 +101,7 @@ header li img {
   position: absolute;
   top: 200px;
   z-index: 1;
-  color: blue;
+  color: white;
   text-align: center;
   left: 50%;
   transform: translateX(-50%);
@@ -90,7 +109,7 @@ header li img {
 
 .logo-lrg {
   left: 50%;
-  height: 400px;
+  height: 36vw;
 }
 
 /*===============================

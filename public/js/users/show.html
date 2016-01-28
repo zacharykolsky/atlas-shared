@@ -1,13 +1,15 @@
-
 <div class="container">
-  <div>{{UserShowViewModel.user.name}}'s page</div>
-  <div class='six columns'>
-    <h2>{{UserShowViewModel.user.name}}'s Trips:</h2>
-    <div class='no-trips' data-ng-show="UserShowViewModel.user.trips.length==0">
-      <p>{{UserShowViewModel.user.name}} has no trips.</p>
-    </div>
-    <div class='trip-info' data-ng-repeat="trip in UserShowViewModel.user.trips | orderBy:'-createdAt'">
-      <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}</a>
+  <h2>{{UserShowViewModel.user.name}}'s Trips:</h2>
+  <div class='no-trips' data-ng-show="UserShowViewModel.user.trips.length==0">
+    <p>{{UserShowViewModel.user.name}} has no trips.</p>
+  </div>
+  <div class="trips row">
+    <div class='three columns' data-ng-repeat="trip in UserShowViewModel.user.trips | orderBy:'-createdAt'">
+      <div class='trip-info'>
+        <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}
+          <img class="u-max-full-width" ng-src="http://lorempixel.com/400/400/city/{{$index}}" alt="" />
+        </a>
+      </div>
     </div>
   </div>
 </div>

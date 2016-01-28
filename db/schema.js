@@ -7,15 +7,11 @@ var Schema = mongoose.Schema,
 
 var LocationSchema = new Schema({
   createdAt: Date,
-  // createdBy: String,
   name: String,
   desc: String,
   tripId: String,
   userId: String,
   category: String,
-  // lat: String,
-  // lon: String
-  // place:String
   coords: Array
 })
 
@@ -45,6 +41,7 @@ UserSchema.methods.validPassword = function(password) {
 var TripSchema = new Schema({
   createdAt: Date,
   createdBy: String,
+  date: String,
   title:String,
   desc:String,
   locale:String,

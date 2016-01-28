@@ -8,30 +8,37 @@
     <input type="text" name="lon" >
   </fieldset>
   <fieldset>
-    <label for="category">Restaurant</label>
-    <input required type="radio" name="category" data-ng-model="location.category" value="restaurant"/>
-    <label for="category">Museum</label>
-    <input required type="radio" name="category" data-ng-model="location.category" value="museum"/>
+    <label for="category">Places to Eat</label>
+    <input required type="radio" name="category" data-ng-model="location.category" value="places to eat"/>
+    <label for="category">Places to Stay</label>
+    <input required type="radio" name="category" data-ng-model="location.category" value="places to stay"/>
+    <label for="category">Places to See</label>
+    <input required type="radio" name="category" data-ng-model="location.category" value="places to see"/>
   </fieldset>
   <fieldset>
-    <!-- <label for="name">place Name:</label> -->
-    <!-- <input required type="text" name="place" data-ng-model="location.name" placeholder="place name"/> -->
-    <!-- <span class='invalid' data-ng-show="locationForm.type.$dirty && locationForm.type.$invalid">
-      <span data-ng-show="locationForm.type.$error.required">Type is required.</span>
-    </span> -->
-  </fieldset>
-  <fieldset>
-    <label for="desc">place Description:</label>
-    <input required type="text" name="desc" data-ng-model="location.desc" placeholder="place description"/>
-    <!-- <span class='invalid' data-ng-show="locationForm.type.$dirty && locationForm.type.$invalid">
-      <span data-ng-show="locationForm.type.$error.required">Type is required.</span>
-    </span> -->
-  </fieldset>
 
-  <button type="button" data-ng-if="!location._id" data-ng-click="create()" ng-disabled="locationForm.$invalid">Create</button>
-  <div data-ng-if="location._id">
-    <button type="button" data-ng-click="cancel()">cancel</button>
-    <button type="button" ng-disabled="locationForm.$invalid" data-ng-click="update()">Update</button>
-    <button type="button" data-ng-click="delete()">Delete</button>
-  </div>
+    <label for="place">Where did you go?</label>
+    <input required type="text" name="place" data-ng-model="location.name" placeholder="Name of establishment"/>
+
+    <!-- <span class='invalid' data-ng-show="locationForm.type.$dirty && locationForm.type.$invalid">
+      <span data-ng-show="locationForm.type.$error.required">Type is required.</span>
+    </span> -->
+  </fieldset>
+  <fieldset>
+
+    <label for="desc">Why was it amazing?</label>
+    <input required type="text" name="desc" data-ng-model="location.desc" placeholder="This place is bananas because..."/>
+
+    <!-- <span class='invalid' data-ng-show="locationForm.type.$dirty && locationForm.type.$invalid">
+    <span data-ng-show="locationForm.type.$error.required">Type is required.</span>
+  </span> -->
+</fieldset>
+
+<button type="button" data-ng-if="!location._id" data-ng-click="create()" ng-disabled="locationForm.$invalid">Create</button>
+<div data-ng-if="location._id">
+  <button type="button" data-ng-click="cancel()">cancel</button>
+  <button type="button" ng-disabled="locationForm.$invalid" data-ng-click="update()">Update</button>
+  <button type="button" data-ng-click="delete()">Delete</button>
+</div>
 </form>
+</div>

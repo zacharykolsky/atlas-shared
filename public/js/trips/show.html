@@ -1,18 +1,20 @@
-<div class='form-container add-container' data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId" data-trip-form data-trip="TripShowViewModel.trip"></div>
-<div data-ng-hide="TripShowViewModel.profile._id == TripShowViewModel.trip.userId" >
-  <p>{{TripShowViewModel.trip.title}}</p>
-  <p>{{TripShowViewModel.trip.desc}}</p>
-  <p>{{TripShowViewModel.trip.userId}}</p>
-</div>
-<div data-map id="map" ></div>
-<div data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId">
-  <div class='form-container add-container' data-location-form data-location="TripShowViewModel.newLocation"></div>
-  <div class='place-info' data-ng-repeat="location in TripShowViewModel.locations">
-    <div data-show-location data-location="location"></div>
+<div class="container">
+  <div class='form-container add-container' data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId" data-trip-form data-trip="TripShowViewModel.trip"></div>
+  <div data-ng-hide="TripShowViewModel.profile._id == TripShowViewModel.trip.userId" >
+    <p>Trip: {{TripShowViewModel.trip.title}}</p>
+    <p>Description: {{TripShowViewModel.trip.desc}}</p>
   </div>
-</div>
-<div data-ng-hide="TripShowViewModel.profile._id == TripShowViewModel.trip.userId" >
-  <div class='place-info' data-ng-repeat="location in TripShowViewModel.locations">
-    <p>{{location.desc}}</p>
+  <div data-map id="map"></div>
+  <div data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId">
+    <div class='form-container add-container' data-location-form data-location="newLocation"></div>
+    <div class='place-info' data-ng-repeat="location in TripShowViewModel.locations">
+      <div data-show-location data-location="location"></div>
+    </div>
+  </div>
+  <div data-ng-hide="TripShowViewModel.profile._id == TripShowViewModel.trip.userId" >
+    <div class='place-info' data-ng-repeat="location in TripShowViewModel.locations">
+      <p>{{location.category}}</p>
+      <p>{{location.name}} - {{location.desc}}</p>
+    </div>
   </div>
 </div>

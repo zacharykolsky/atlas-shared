@@ -98,6 +98,7 @@ var controller = {
   },
   updateTripLocation:function(req,res){
     Location.findById(req.params.id, function(err,loc){
+      loc.category = req.body.category;
       loc.name = req.body.name;
       loc.desc = req.body.desc;
       loc.save(function(err){

@@ -24,7 +24,7 @@
 
         var feats = L.featureGroup().addTo(map);
         TripFactory.get({id:$state.params.id},function(trip){
-          
+
           $http.get("http://127.0.0.1:3000/trips/"+trip._id+"/locations.json").then(function(response){
             var places = response.data;
             console.log(places)

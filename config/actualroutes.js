@@ -33,6 +33,11 @@ router.route("/trips/:id.:format?")
   .delete(tripsController.deleteTrip)
   //get a trip
 
+router.route("/trips.:format?")
+  .get(tripsController.getTrips)
+  .post(tripsController.addTrip);
+  //get all trips/create new trip 
+
 router.route("/trips/:id/locations.:format?")
   .get(tripsController.getTripLocations)
   .post(tripsController.addTripLocation)

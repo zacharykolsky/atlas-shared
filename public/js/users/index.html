@@ -17,7 +17,14 @@
       </div>
     </div>
   </div>
-  <div data-ng-repeat="user in UserIndexViewModel.users">
-    <a data-ui-sref="userShow({id:user._id})">{{user.name}}</a>
+  <div class="trips row">
+    <h2>Users</h2>
+    <div class='three columns' data-ng-repeat="user in UserIndexViewModel.users">
+      <div class="trip-info">
+        <a data-ui-sref="userShow({id:user._id})">{{user.name}}
+          <img ng-src="{{user.photo}}" alt="">
+        </a>
+      </div>
+    </div>
   </div>
 </div>

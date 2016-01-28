@@ -18,12 +18,12 @@
     <!-- <span class='invalid' data-ng-show="locationForm.type.$dirty && locationForm.type.$invalid">
     <span data-ng-show="locationForm.type.$error.required">Type is required.</span>
   </span> -->
-</fieldset>
+  </fieldset>
 
-<button type="button" data-ng-if="!location._id" data-ng-click="create()" ng-disabled="locationForm.$invalid">Create</button>
-<div data-ng-if="location._id">
-  <button type="button" data-ng-click="cancel()">cancel</button>
-  <button type="button" ng-disabled="locationForm.$invalid" data-ng-click="update()">Update</button>
-  <button type="button" data-ng-click="delete()">Delete</button>
-</div>
+  <button type="button" data-ng-if="!location._id" data-ng-click="create()" ng-disabled="locationForm.$invalid">Create</button>
+  <div data-ng-if="location._id">
+    <button type="button" data-ng-click="cancel()">cancel</button>
+    <button type="button" ng-disabled="locationForm.$invalid" data-ng-click="update()">Update</button>
+    <button type="button" data-ng-click="delete()">Delete</button>
+  </div>
 </form>

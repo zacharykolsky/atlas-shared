@@ -36,7 +36,7 @@ router.route("/trips/:id.:format?")
 router.route("/trips.:format?")
   .get(tripsController.getTrips)
   .post(tripsController.addTrip);
-  //get all trips/create new trip 
+  //get all trips/create new trip
 
 router.route("/trips/:id/locations.:format?")
   .get(tripsController.getTripLocations)
@@ -46,6 +46,15 @@ router.route("/trips/:id/locations.:format?")
 router.route("/trips/:tripId/locations/:id.:format?")
   .put(tripsController.updateTripLocation)
   .delete(tripsController.deleteTripLocation)
+
+// protips
+router.route("/trips/:id/protips.:format?")
+  .get(tripsController.getTripProtips)
+  .post(tripsController.addTripProtip)
+
+router.route("/trips/:tripId/protips/:id.:format?")
+  .put(tripsController.updateTripProtip)
+  .delete(tripsController.deleteTripProtip)
 
 router.route("/")
   .get(function(req,res){

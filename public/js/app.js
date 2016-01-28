@@ -6,6 +6,7 @@
     "ui.router",
     "trips",
     "locations",
+    "protips",
     "users"
   ])
   .config([

@@ -1,0 +1,15 @@
+<form novalidate name="protipForm">
+  <fieldset>
+
+    <label for="body">Pro-tip:</label>
+    <input required type="text" name="body" data-ng-model="protip.body" placeholder="(Transportation suggestions, favorite neighborhoods, etc)"/>
+
+  </fieldset>
+
+<button type="button" data-ng-if="!protip._id" data-ng-click="create()" ng-disabled="protipForm.$invalid">Create</button>
+<div data-ng-if="protip._id">
+  <button type="button" data-ng-click="cancel()">cancel</button>
+  <button type="button" ng-disabled="protipForm.$invalid" data-ng-click="update()">Update</button>
+  <button type="button" data-ng-click="delete()">Delete</button>
+</div>
+</form>

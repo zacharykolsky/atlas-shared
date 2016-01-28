@@ -4,6 +4,7 @@ var passport = require('passport');
 
 var usersController = require('../controllers/userController');
 var locationsController = require("../controllers/locationsController");
+var protipsController = require("../controllers/protipsController");
 var tripsController = require("../controllers/tripsController");
 
 var request = require("request")
@@ -69,6 +70,16 @@ router.route("/trips/:id/locations.:format?")
 router.route("/trips/:tripId/locations/:id.:format?")
   .put(tripsController.updateTripLocation)
   .delete(tripsController.deleteTripLocation)
+
+// protips
+router.route("/trips/:id/protips.:format?")
+  .get(tripsController.getTripProtips)
+  .post(tripsController.addTripProtip)
+
+router.route("/trips/:tripId/protips/:id.:format?")
+  .put(tripsController.updateTripProtip)
+  .delete(tripsController.deleteTripProtip)
+  
 
 router.route("/")
   .get(function(req,res){

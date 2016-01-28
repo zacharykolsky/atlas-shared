@@ -160,3 +160,27 @@ div{
 .selected{
   border:2px solid blue;
 }
+
+/*===============================
+Protips
+===============================*/
+
+ol {
+    counter-reset: item;
+    list-style-type: decimal;
+    list-style: none;
+}
+
+ol li:before {
+    content: 'TIP ' counter(item, decimal) '. ';
+    counter-increment: item;
+}
+
+.protip {
+  padding: 20px;
+  border: 2px solid #1094de;
+}
+
+.protip-show {
+  float: left;
+}

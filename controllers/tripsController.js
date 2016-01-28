@@ -4,22 +4,13 @@ var User = require("../models/user")
 
 var controller = {
   getTrips:function(req,res){
-    var userId = req.user._id;
-    Trip.find({'userId':userId}, function(err,docs){
+    // var userId = req.user._id;
+    // Trip.find({'userId':userId}, function(err,docs){
+    Trip.find({},function(err,docs){
       if (req.params.format){
         res.json(docs)
       }else{
         res.render("index.hbs")
-      }
-    })
-  },
-  getUsersTrips:function(req,res){
-    var userId = req.params.id;
-    Trip.find({'userId':userId}, function(err,docs){
-      if (req.params.format){
-        res.json(docs)
-      }else{
-        res.json({not:"json"})
       }
     })
   },

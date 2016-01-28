@@ -1,21 +1,3 @@
-<div class="container">
-  <div class='six columns'>
-    <h2>Your Trips:</h2>
-    <div class='no-trips' data-ng-show="TripIndexViewModel.trips.length==0">
-      <p>You have no trips.</p>
-    </div>
-    <div class='trip-info u-cf' data-ng-repeat="trip in TripIndexViewModel.trips | orderBy:'-createdAt'">
-      <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}
-      </a>
-      <img src="https://placeimg.com/240/240/nature" alt="" />
-    </div>
-  </div>
-  <div class='six columns'>
-    <h2>Add Trip:</h2>
-    <div class='form-container add-container' data-trip-form data-trip="TripIndexViewModel.newTrip"></div>
-  </div>
-</div>
-<div class='six columns'>
-  <h2>Add A Recent Trip:</h2>
-  <div class='form-container add-container' data-trip-form data-trip="TripIndexViewModel.newTrip"></div>
+<div data-ng-repeat="trip in TripIndexViewModel.trips">
+  <div>{{trip}}</div>
 </div>

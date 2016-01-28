@@ -4,12 +4,12 @@
   angular
   .module("trips")
   .controller("TripIndexController", [
-    "TripFactory","$scope",
+    "TripFactory",
+    "$http",
     TripIndexControllerFunction
   ]);
 
-  function TripIndexControllerFunction(TripFactory,$scope){
-    this.trips = TripFactory.query();
-    this.newTrip = new TripFactory();
+  function TripIndexControllerFunction(TripFactory,$http){
+    this.trips = TripFactory.query();//$http.get("http://127.0.0.1:3000/trips/all.json")
   }
 }());

@@ -6,7 +6,6 @@ var Location = require("../models/location.js")
 var passport = require("passport");
 var request  = require("request")
 
-
 // GET /signup
 function getSignup(request, response) {
   response.render("signup.hbs", { message: request.flash("signupMessage") });

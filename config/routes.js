@@ -28,7 +28,7 @@ router.route("/trips/:id.:format?")
 
 router.route("/trips.:format?")
   .get(tripsController.getTrips)
-  .post(tripsController.addTrip);
+  .post(tripsController.addTrip)
 
 router.route("/trips/:id/locations.:format?")
   .get(locationsController.getTripLocations)

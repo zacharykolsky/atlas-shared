@@ -4,7 +4,7 @@ So many people in your network go to interesting places around the world. There 
 Atlas Shared makes it easier to facilitate travel recommendations from within your network by building a community of shared experiences.
 
 ###  How It Works
-We utilize a map-based interface for you to share your travel insights and become a thought leader in your network, while learning from your network
+We utilize a map-based interface for you to share your travel insights and become a thought leader in your network, while learning from your network about the best places to visit at the destinations you plan to visit.
 
 ## Installation
 ```
@@ -34,6 +34,6 @@ module.exports = {
 
 ## Credits
 
-Product Manager: Zachary Kolsky
-UX Team: Gregg Tourville, Naisha Silva
-Web Developers: Tyler Crosse, Chase Gruber, Rachel Porter
+*  Product Manager: Zachary Kolsky
+*  UX Team: Gregg Tourville, Naisha Silva
+*  Web Developers: Tyler Crosse, Chase Gruber, Rachel Porter

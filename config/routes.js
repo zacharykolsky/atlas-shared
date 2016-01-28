@@ -48,7 +48,6 @@ router.route("/checkBounds")
     var place = req.query.q;
     var geo = new Geocoder();
     geo.geocode(place, function(err,response){
-      // console.log(response)
       var accepted = ["administrative","city","continent","country","island"]
       var mod = response.filter(function(d){return accepted.indexOf(d.type)>-1 })
       res.json(mod[0])

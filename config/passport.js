@@ -1,6 +1,6 @@
-var FacebookStrategy  = require("passport-facebook").Strategy;
-var LocalStrategy     = require("passport-local").Strategy;
-var User              = require("../models/user");
+var FacebookStrategy = require("passport-facebook").Strategy;
+var LocalStrategy = require("passport-local").Strategy;
+var User = require("../models/user");
 var fs = require("fs");
 var env = fs.existsSync("./env.js") ? require("../env") : process.env;
 

@@ -22,13 +22,14 @@
     <script src="/components/leaflet-geocoder-mapzen/dist/leaflet-geocoder-mapzen.js"></script>
     <link rel="stylesheet" href="/components/leaflet-geocoder-mapzen/dist/leaflet-geocoder-mapzen.css">
 
-
     <script src="js/app.js"></script>
 
     <script src="js/trips/trips.js"></script>
     <script src="js/trips/trip.factory.js"></script>
     <script src="js/trips/form.directive.js"></script>
     <script src="js/trips/map.directive.js"></script>
+    <script src="js/trips/index.controller.js"></script>
+    <script src="js/trips/show.controller.js"></script>
 
     <script src="js/locations/locations.js"></script>
     <script src="js/locations/location.factory.js"></script>
@@ -41,10 +42,8 @@
     <script src="js/users/index.controller.js"></script>
     <script src="js/users/show.controller.js"></script>
 
-    <script src="js/trips/index.controller.js"></script>
-    <script src="js/trips/show.controller.js"></script>
-
     <script type="text/javascript">
+    //hacky fix for facebook callback appending hash #_=_ to url
     if (window.location.hash && window.location.hash == '#_=_') {
       if (window.history && history.pushState) {
           window.history.pushState("", document.title, window.location.pathname);

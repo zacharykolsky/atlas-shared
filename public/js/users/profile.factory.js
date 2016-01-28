@@ -9,7 +9,8 @@
   ]);
 
   function ProfileFactoryFunction($resource){
-    return $resource("http://127.0.0.1:3000/profile.json", {}, {
+    var baseUrl = window.location.origin;
+    return $resource(baseUrl+"/profile.json", {}, {
       update: {method: "PUT"}
     });
   }

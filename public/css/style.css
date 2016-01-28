@@ -55,7 +55,7 @@ header li a {
   display: block;
   margin: 0 auto;
   margin-top: 10px;
-  width: 180px;
+  width: 200px;
   height: 36px;
   background-color: white;
   line-height: 36px;
@@ -95,10 +95,12 @@ header li img {
 .trip-info img {
   display: block;
   margin: 0;
-  width: auto;
+  min-width: 100%;
 }
 
 .trip-info a {
+  text-decoration: none;
+  color: inherit;
   display: block;
 }
 
@@ -125,8 +127,33 @@ header li img {
 
 ===============================*/
 
-main {
-  margin: 60px 0;
+.form-left {
+  margin-left: 30px
+}
+
+.about:first-child{
+  margin-top: 60px;
+}
+
+.about:last-child{
+  margin-bottom: 60px;
+}
+
+.about h2 {
+  text-align: center;
+  border-bottom: 2px solid rgb(75, 176, 203)
+}
+
+/*===============================
+
+===============================*/
+
+.ng-scope:first-child {
+  margin-top: 60px;
+}
+
+.ng-scope:last-child {
+  margin-bottom: 60px;
 }
 
 footer{
@@ -208,8 +235,15 @@ ol li:before {
 .protip {
   padding: 20px;
   border: 2px solid #1094de;
+  width: 250px;
 }
 
 .protip-show {
   float: left;
+}
+
+.category {
+  padding: 5px 10px;
+  background: #1094de;
+  border-radius: 5px;
 }

@@ -1,6 +1,7 @@
 <div>
-  <p>Category: {{location.category}}</p>
-  <p>{{location.name}}-{{location.desc}} <a data-ng-click="showForm()" data-ng-hide="formShow" href="#">Edit</a></p>
+  <div class="category">{{location.category}}</div>
+  <h4>{{location.name}}</h4>
+  <h5>{{location.desc}}<a data-ng-click="showForm()" data-ng-hide="formShow" href="#"> Edit</a></h5>
   <div data-ng-show="formShow">
     <div class='form-container edit-container' data-location-form data-location="location"></div>
   </div>

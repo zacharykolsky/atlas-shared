@@ -235,8 +235,15 @@ ol li:before {
 .protip {
   padding: 20px;
   border: 2px solid #1094de;
+  width: 250px;
 }
 
 .protip-show {
   float: left;
+}
+
+.category {
+  padding: 5px 10px;
+  background: #1094de;
+  border-radius: 5px;
 }

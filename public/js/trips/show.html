@@ -39,7 +39,7 @@
         </div>
       </div>
       <div data-ng-hide="TripShowViewModel.profile._id == TripShowViewModel.trip.userId">
-        <div class='place-info one-third column' data-ng-repeat="location in TripShowViewModel.locations">
+        <div class='place-info' data-ng-repeat="location in TripShowViewModel.locations">
           <div class="category">{{location.category}}</div>
           <h4>{{location.name}}</h4>
           <h5>{{location.desc}}</h5>

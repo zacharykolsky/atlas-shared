@@ -15,7 +15,7 @@
     <div class='three columns' data-ng-repeat="trip in UserIndexViewModel.user.trips | orderBy:'-createdAt' | filter:searchTrips">
       <div class='trip-info'>
         <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}
-            <img class="u-max-full-width" ng-src="http://lorempixel.com/400/400/city/{{$index}}" alt="" />
+            <img class="u-max-full-width" ng-src="http://lorempixel.com/400/400/abstract/{{$index}}" alt="" />
           </a>
       </div>
     </div>
@@ -26,7 +26,7 @@
     <div class='three columns' data-ng-repeat="user in UserIndexViewModel.users | filter:searchUsers">
       <div class="trip-info">
         <a data-ui-sref="userShow({id:user._id})">{{user.name}}
-          <img class="u-max-full-width" ng-src="{{user.photo}}" alt="">
+          <!-- <img class="u-max-full-width" ng-src="{{user.photo}}" alt=""> -->
         </a>
       </div>
     </div>

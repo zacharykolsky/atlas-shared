@@ -5,6 +5,16 @@ body {
   background: #E9E9E9;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.breadcrumbs {
+  margin-top: 20px;
+  text-align: center;
+}
+
 /*===============================
 Header
 ===============================*/
@@ -153,7 +163,7 @@ header li img {
 ===============================*/
 
 .ng-scope:first-child {
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .ng-scope:last-child {

@@ -73,7 +73,8 @@
                 layers: ['venue','address'],
                 expanded:true,
                 autocomplete:false,
-                panToPoint:false
+                panToPoint:false,
+                placeholder: 'Hit Enter To Complete'
               }
 
               var geocoder = L.control.geocoder('search-R7-i3bQ',geocoderOptions).addTo(map);

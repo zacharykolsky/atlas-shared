@@ -2,7 +2,7 @@
   <div class="row" ng-hide='showEdit'>
     <div class="three columns">
       <h4>Trip Title</h4>
-      <p>{{TripShowViewModel.trip.desc}}</p>
+      <p>{{TripShowViewModel.trip.title}}</p>
     </div>
     <div class="three columns">
       <h4>Where</h4>
@@ -17,7 +17,10 @@
       <p>{{TripShowViewModel.trip.desc}}</p>
     </div>
   </div>
-  <div class="button" ng-hide='showEdit' ng-click="showEdit = !showEdit">Edit Trip</div>
+  <div data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId">
+
+    <div class="button" ng-hide='showEdit'  ng-click="showEdit = !showEdit">Edit Trip</div>
+  </div>
   <div class='row' ng-show='showEdit'>
     <div class="button" ng-show='showEdit' ng-click="showEdit = !showEdit">Cancel Edit</div>
     <div class='form-container add-container' data-ng-show="TripShowViewModel.profile._id == TripShowViewModel.trip.userId" data-trip-form data-trip="TripShowViewModel.trip"></div>

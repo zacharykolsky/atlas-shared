@@ -166,6 +166,14 @@ header li img {
 
 ===============================*/
 
+.edit {
+  margin-bottom: 20px;
+}
+
+.edit.loc{
+  display: block;
+}
+
 .ng-scope:first-child {
   margin-top: 20px;
 }

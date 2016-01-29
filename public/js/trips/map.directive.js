@@ -48,14 +48,16 @@
             $http.get(baseUrl+"/trips/"+trip._id+"/locations.json").then(function(response){
               var places = response.data;
               places.forEach(function(place){
-                var marker = L.marker(place.coords)
-                // .setIcon(L.divIcon({
-                //     className: 'marker',
-                //     iconSize:[30,50],
-                //     popupAnchor:[0,0]
-                // }))
-                  .bindPopup(makePopup(place,false))
-                  .addTo(feats)
+                if (place.coords[0] !== null){
+                  var marker = L.marker(place.coords)
+                  // .setIcon(L.divIcon({
+                  //     className: 'marker',
+                  //     iconSize:[30,50],
+                  //     popupAnchor:[0,0]
+                  // }))
+                    .bindPopup(makePopup(place,false))
+                    .addTo(feats)
+                }
               })
             })
 
@@ -94,14 +96,16 @@
           $http.get(baseUrl+"/locations.json").then(function(response){
             var places = response.data;
             places.forEach(function(place){
-              var marker = L.marker(place.coords)
-              // .setIcon(L.divIcon({
-              //     className: 'marker',
-              //     iconSize:[30,50],
-              //     popupAnchor:[0,0]
-              // }))
-                .bindPopup(makePopup(place,true))
-                .addTo(feats)
+              if (place.coords[0] !== null){
+                var marker = L.marker(place.coords)
+                // .setIcon(L.divIcon({
+                //     className: 'marker',
+                //     iconSize:[30,50],
+                //     popupAnchor:[0,0]
+                // }))
+                  .bindPopup(makePopup(place,false))
+                  .addTo(feats)
+              }
             })
             map.fitBounds(feats.getBounds())
           })

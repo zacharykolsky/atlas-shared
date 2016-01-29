@@ -20,7 +20,12 @@
       },
       link: function(scope){
         L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhc2VncnViZXIiLCJhIjoidV9tdHNYSSJ9.RRyvDLny4YwDwzPCeOJZrA';
-        var map = L.mapbox.map('map', 'mapbox.streets');
+
+        var maxSW = L.latLng(-85, -179),
+          maxNE = L.latLng(85, 180),
+          maxBounds = L.latLngBounds(maxSW, maxNE);
+
+        var map = L.mapbox.map('map', 'chasegruber.60d1e4d1', {minZoom:2, maxBounds:maxBounds});
         map.setView([40,-85],4)
 
         var baseUrl = window.location.origin;
@@ -103,7 +108,7 @@
                 //     iconSize:[30,50],
                 //     popupAnchor:[0,0]
                 // }))
-                  .bindPopup(makePopup(place,false))
+                  .bindPopup(makePopup(place,true))
                   .addTo(feats)
               }
             })

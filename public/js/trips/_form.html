@@ -22,6 +22,7 @@
       <span data-ng-show="tripForm.type.$error.required">Type is required.</span>
     </span> -->
   </fieldset>
+  <p>All fields required</p>
   <button type="button" data-ng-if="!trip._id" data-ng-click="create()" ng-disabled="tripForm.$invalid">Create</button>
   <div data-ng-if="trip._id">
     <button type="button" data-ng-click="cancel()">Back</button>

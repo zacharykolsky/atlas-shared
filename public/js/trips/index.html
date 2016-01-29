@@ -2,7 +2,8 @@
   <div data-map ></div>
   <div class="trips row">
     <h2>Explore Trips:</h2>
-    <div class='three columns' data-ng-repeat="trip in TripIndexViewModel.trips | orderBy:'-createdAt'">
+    <input ng-model="searchText" placeholder="Filter Trips">
+    <div class='three columns' data-ng-repeat="trip in TripIndexViewModel.trips | orderBy:'-createdAt' | filter:searchText">
       <div class='trip-info'>
         <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}
           <img class="u-max-full-width" ng-src="http://lorempixel.com/400/400/city/{{$index}}" alt="" />

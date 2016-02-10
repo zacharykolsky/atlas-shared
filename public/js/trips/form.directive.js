@@ -16,6 +16,8 @@
         trip: "="
       },
       link: function(scope){
+        scope.input = document.getElementById('pac');
+        scope.searchBox = new google.maps.places.SearchBox(scope.input);
         if (!scope.trip){
           scope.trip = new TripFactory();
         }

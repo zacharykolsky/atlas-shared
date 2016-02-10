@@ -19,100 +19,53 @@
         locations: "="
       },
       link: function(scope){
-        L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhc2VncnViZXIiLCJhIjoidV9tdHNYSSJ9.RRyvDLny4YwDwzPCeOJZrA';
 
-        var maxSW = L.latLng(-85, -179),
-          maxNE = L.latLng(85, 180),
-          maxBounds = L.latLngBounds(maxSW, maxNE);
+        scope.markers = [];
 
-        var map = L.mapbox.map('map', 'chasegruber.60d1e4d1', {minZoom:2, maxBounds:maxBounds});
-        map.setView([40,-85],4)
+        scope.initMap = (function() {
+          window.googleMap = new google.maps.Map(document.getElementById('map'), {
+            center: new google.maps.LatLng(38.9047, -77.0164),
+            zoom: 2,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+        })();
+        scope.baseUrl = window.location.origin;
 
-        var baseUrl = window.location.origin;
-        var feats = L.featureGroup().addTo(map);
+        scope.drawPlace = function(place) {
+          if (place.coords[0] !== null){
+            var loc = new google.maps.LatLng(place.coords[0], place.coords[1]);
+            var marker = new google.maps.Marker({
+              position: loc,
+              map: window.googleMap
+            });
+            scope.markers.push(marker);
 
-        function makePopup(place,makeLink){
-          var div = document.createElement("div")
-          var p1 = document.createElement("p")
-          p1.textContent = place.name;
-          var p2 = document.createElement("p")
-          p2.textContent = place.desc;
-          div.appendChild(p1)
-          div.appendChild(p2)
-          if(makeLink){
-            var link = document.createElement("a")
-            link.href = baseUrl+"/trips/"+place.tripId;
-            link.textContent = "View Trip";
-            div.appendChild(link)
+            var contentString =  "<div>"+
+            "<p>Location: "+place.name+"</p>"+
+            "<p>Description: "+place.desc+"</p>";
+            $state.params.id ? contentString+="": contentString+=("<p><a href="+scope.baseUrl+"/trips/"+place.tripId+">View Trip</a></p>")
+            contentString+=("</div>");
+
+            var infoWindow = new google.maps.InfoWindow();
+            google.maps.event.addListener(marker, 'click', (function(marker, contentString){
+              return function() {
+                infoWindow.setContent(contentString);
+                infoWindow.open(window.googleMap, marker);
+              }
+            })(marker, contentString));
           }
-          return div;
         }
-
         if ($state.params.id){
           TripFactory.get({id:$state.params.id},function(trip){
-            $http.get(baseUrl+"/trips/"+trip._id+"/locations.json").then(function(response){
+            $http.get(scope.baseUrl+"/trips/"+trip._id+"/locations.json").then(function(response){
               var places = response.data;
-              places.forEach(function(place){
-                if (place.coords[0] !== null){
-                  var marker = L.marker(place.coords)
-                  // .setIcon(L.divIcon({
-                  //     className: 'marker',
-                  //     iconSize:[30,50],
-                  //     popupAnchor:[0,0]
-                  // }))
-                    .bindPopup(makePopup(place,false))
-                    .addTo(feats)
-                }
-              })
-            })
-
-            $http.get(baseUrl+"/checkBounds?q="+trip.locale).then(function(result){
-              if (result.data){
-                var bounding = result.data.boundingbox;
-                var sw = L.latLng(bounding[0],bounding[2]);
-                var ne = L.latLng(bounding[1],bounding[3]);
-                var bounds = L.latLngBounds(sw,ne);
-                map.fitBounds(bounds)
-              }
-
-              var geocoderOptions = {
-                bounds: bounds,
-                layers: ['venue','address'],
-                expanded:true,
-                autocomplete:false,
-                panToPoint:false,
-                placeholder: 'Hit Enter To Complete'
-              }
-
-              var geocoder = L.control.geocoder('search-R7-i3bQ',geocoderOptions).addTo(map);
-              var geocontainer = document.querySelector(".add-container #geocontainer")
-              geocontainer.appendChild(geocoder.getContainer());
-
-              var georesults = document.getElementById("georesults");
-              geocoder.on("select", function(e){
-                var lat = georesults.querySelector("input[name=lat]");
-                lat.value = e.latlng.lat;
-                var lon = georesults.querySelector("input[name=lon]");
-                lon.value = e.latlng.lng;
-              })
+              places.forEach(scope.drawPlace)
             })
           })
         }else{
-          $http.get(baseUrl+"/locations.json").then(function(response){
+          $http.get(scope.baseUrl+"/locations.json").then(function(response){
             var places = response.data;
-            places.forEach(function(place){
-              if (place.coords[0] !== null){
-                var marker = L.marker(place.coords)
-                // .setIcon(L.divIcon({
-                //     className: 'marker',
-                //     iconSize:[30,50],
-                //     popupAnchor:[0,0]
-                // }))
-                  .bindPopup(makePopup(place,true))
-                  .addTo(feats)
-              }
-            })
-            map.fitBounds(feats.getBounds())
+            places.forEach(scope.drawPlace);
           })
         }
       }

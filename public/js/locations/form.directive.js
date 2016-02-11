@@ -14,13 +14,85 @@
     return{
       templateUrl: "js/locations/_form.html",
       scope: {
-        location: "="
+        location: "=",
+        trip: "="
       },
-      link: function(scope){
+      link: function(scope, element){
+        var geocoder = new google.maps.Geocoder();
+        var codeAddress = function() {
+          if (scope.trip){
+            geocoder.geocode( { 'address': scope.trip.locale}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                window.googleMap.setCenter(results[0].geometry.location);
+                window.googleMap.setZoom(5);
+              } else {
+                console.log("Geocode was not successful for the following reason: " + status);
+              }
+            });
+          }
+        }
+
         var tripId = $state.params.id;
+        scope.markers = [];
+        scope.input = document.getElementById('pac-input');
+        scope.searchBox = new google.maps.places.SearchBox(scope.input);
+
+        setTimeout(function(){
+          window.googleMap.addListener('bounds_changed', function() {
+            scope.searchBox.setBounds(window.googleMap.getBounds());
+          });
+          codeAddress();
+        }, 300);
+
+        scope.searchBox.addListener('places_changed', function() {
+          var places = scope.searchBox.getPlaces();
+          document.querySelector("#pac-input").value = places[0].formatted_address;
+          var lat = document.querySelector("input[name=lat]").value = places[0].geometry.location.lat();
+          var lon = document.querySelector("input[name=lon]").value = places[0].geometry.location.lng();
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          scope.markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          scope.markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            scope.markers.push(new google.maps.Marker({
+              map: window.googleMap,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          window.googleMap.fitBounds(bounds);
+        });
+
+
+
 
         scope.create = function(){
-          var place = document.querySelector(".leaflet-pelias-input").value;
+          var place = document.querySelector("#pac-input").value;
           var lat = document.querySelector("input[name=lat]").value;
           var lon = document.querySelector("input[name=lon]").value;
           scope.location.name = place;
@@ -30,7 +102,14 @@
           });
         }
         scope.update = function(){
+          var place = document.querySelector("#pac-input").value;
+          var lat = document.querySelector("input[name=lat]").value;
+          var lon = document.querySelector("input[name=lon]").value;
+          scope.location.name = place;
+          scope.location.coords = [parseFloat(lat),parseFloat(lon)];
+          console.log(scope.location.coords);
           scope.location.$update({tripId:tripId,id: scope.location._id}, function(response){
+            console.log(response);
             $state.go("tripsShow", {id: tripId}, {reload: true});
           });
         }

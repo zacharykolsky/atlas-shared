@@ -3,11 +3,11 @@
   <div class="trips row">
     <h2>Explore Trips:</h2>
     <input ng-model="searchText" placeholder="Filter Trips">
-    <div class='three columns' data-ng-repeat="trip in TripIndexViewModel.trips | orderBy:'-createdAt' | filter:searchText">
+    <div class='tripbox three columns' data-ng-repeat="trip in TripIndexViewModel.trips | orderBy:'-createdAt' | filter:searchText">
       <div class='trip-info'>
         <a data-ui-sref="tripsShow({id: trip._id})">
-          <p>{{trip.title}}</p>
-          <p>{{trip.locale}}</p>
+          <p class="hideoverflow">{{trip.title}}</p>
+          <p class="hideoverflow">{{trip.locale}}</p>
           <img class="u-max-full-width" ng-src="http://lorempixel.com/400/400/abstract/{{$index}}" alt="" />
         </a>
       </div>

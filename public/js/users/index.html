@@ -12,7 +12,7 @@
     <div class='no-trips' data-ng-show="UserIndexViewModel.user.trips.length==0">
       <p>You have no trips.</p>
     </div>
-    <div class='three columns' data-ng-repeat="trip in UserIndexViewModel.user.trips | orderBy:'-createdAt' | filter:searchTrips">
+    <div class='user-box hideoverlow three columns' data-ng-repeat="trip in UserIndexViewModel.user.trips | orderBy:'-createdAt' | filter:searchTrips">
       <div class='trip-info'>
         <a data-ui-sref="tripsShow({id: trip._id})">{{trip.title}}
             <img class="u-max-full-width" ng-src="http://lorempixel.com/400/400/abstract/{{$index}}" alt="" />

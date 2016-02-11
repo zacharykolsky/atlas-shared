@@ -32,11 +32,21 @@
         scope.baseUrl = window.location.origin;
 
         scope.drawPlace = function(place) {
+          var icon = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|";
+          if (place.category == "places to eat") {
+            icon+="669900";
+          } else if (place.category == "places to stay"){
+            icon +="cc0000";
+          } else {
+            icon+="3366ff";
+          }
           if (place.coords[0] !== null){
             var loc = new google.maps.LatLng(place.coords[0], place.coords[1]);
             var marker = new google.maps.Marker({
               position: loc,
-              map: window.googleMap
+              map: window.googleMap,
+              icon: icon
+
             });
             scope.markers.push(marker);
 

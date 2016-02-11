@@ -24,7 +24,7 @@
             geocoder.geocode( { 'address': scope.trip.locale}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
                 window.googleMap.setCenter(results[0].geometry.location);
-                window.googleMap.setZoom(7);
+                window.googleMap.setZoom(5);
               } else {
                 console.log("Geocode was not successful for the following reason: " + status);
               }

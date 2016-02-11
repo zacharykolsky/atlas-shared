@@ -15,8 +15,10 @@
       scope: {
         trip: "="
       },
-      link: function(scope){
-        scope.input = document.getElementById('pac');
+      link: function(scope, element){
+
+        // scope.trip.locale = element[0].getElementById('pac').value;
+        scope.input = element[0].getElementById('pac');
         scope.searchBox = new google.maps.places.SearchBox(scope.input);
         if (!scope.trip){
           scope.trip = new TripFactory();

@@ -33,11 +33,13 @@
           });
 
           scope.searchBox.addListener('places_changed', function() {
-            console.log("a")
+            // console.log(places[0]);
+            // console.log(element.querySelector("#pac-input").value);
+            // console.log(document.querySelector("#pac-input").value);
             var places = scope.searchBox.getPlaces();
-            document.querySelector("#pac-input").value = places[0].formatted_address;
-            document.querySelector("input[name=lat]").value = places[0].geometry.location.lat();
-            document.querySelector("input[name=lon]").value = places[0].geometry.location.lng();
+            // document.querySelector("#pac-input").value = places[0].formatted_address;
+            element[0].querySelector("input[name=lat]").value = places[0].geometry.location.lat();
+            element[0].querySelector("input[name=lon]").value = places[0].geometry.location.lng();
             if (places.length == 0) {
               return;
             }

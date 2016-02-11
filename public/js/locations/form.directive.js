@@ -24,7 +24,7 @@
             geocoder.geocode( { 'address': scope.trip.locale}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
                 window.googleMap.setCenter(results[0].geometry.location);
-                window.googleMap.setZoom(5);
+                window.googleMap.setZoom(7);
               } else {
                 console.log("Geocode was not successful for the following reason: " + status);
               }
@@ -46,9 +46,12 @@
 
         scope.searchBox.addListener('places_changed', function() {
           var places = scope.searchBox.getPlaces();
-          document.querySelector("#pac-input").value = places[0].formatted_address;
-          var lat = document.querySelector("input[name=lat]").value = places[0].geometry.location.lat();
-          var lon = document.querySelector("input[name=lon]").value = places[0].geometry.location.lng();
+          // console.log(places[0]);
+          // console.log(document.querySelector("#pac-input").value);
+          // console.log(element[0].querySelector("#pac-input").value);
+          // document.querySelector("#pac-input").value = places[0].formatted_address;
+          element[0].querySelector("input[name=lat]").value = places[0].geometry.location.lat();
+          element[0].querySelector("input[name=lon]").value = places[0].geometry.location.lng();
           if (places.length == 0) {
             return;
           }
@@ -92,9 +95,9 @@
 
 
         scope.create = function(){
-          var place = document.querySelector("#pac-input").value;
-          var lat = document.querySelector("input[name=lat]").value;
-          var lon = document.querySelector("input[name=lon]").value;
+          var place = element[0].querySelector("#pac-input").value;
+          var lat = element[0].querySelector("input[name=lat]").value;
+          var lon = element[0].querySelector("input[name=lon]").value;
           scope.location.name = place;
           scope.location.coords = [parseFloat(lat),parseFloat(lon)];
           scope.location.$save({tripId:tripId},function(response){
@@ -102,9 +105,9 @@
           });
         }
         scope.update = function(){
-          var place = document.querySelector("#pac-input").value;
-          var lat = document.querySelector("input[name=lat]").value;
-          var lon = document.querySelector("input[name=lon]").value;
+          var place = element[0].querySelector("#pac-input").value;
+          var lat = element[0].querySelector("input[name=lat]").value;
+          var lon = element[0].querySelector("input[name=lon]").value;
           scope.location.name = place;
           scope.location.coords = [parseFloat(lat),parseFloat(lon)];
           console.log(scope.location.coords);

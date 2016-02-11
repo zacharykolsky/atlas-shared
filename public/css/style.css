@@ -315,3 +315,24 @@ ol li:before {
   font-size: 13px;
   font-weight: 300;
 }
+
+@media only screen and (max-width: 500px) {
+    .tripbox {
+        height: 175px;
+    }
+    .tag-info {
+      top: 200px;
+      width: 400px;
+      /*height: 100px;*/
+    }
+    .tag-info img {
+      height: 100px;
+    }
+    .user-box {
+      height: 100px;
+    }
+}
+
+.hideoverflow {
+  overflow: hidden;
+}

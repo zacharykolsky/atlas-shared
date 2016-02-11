@@ -41,7 +41,7 @@
             scope.markers.push(marker);
 
             var contentString =  "<div>"+
-            "<p>Location: "+place.name+"</p>"+
+            "<p><h5>Location: "+place.name+"</h5></p>"+
             "<p>Description: "+place.desc+"</p>";
             $state.params.id ? contentString+="": contentString+=("<p><a href="+scope.baseUrl+"/trips/"+place.tripId+">View Trip</a></p>")
             contentString+=("</div>");
@@ -56,7 +56,7 @@
           }
         }
         if ($state.params.id){
-          TripFactory.get({id:$state.params.id},function(trip){
+            TripFactory.get({id:$state.params.id},function(trip){
             $http.get(scope.baseUrl+"/trips/"+trip._id+"/locations.json").then(function(response){
               var places = response.data;
               places.forEach(scope.drawPlace)

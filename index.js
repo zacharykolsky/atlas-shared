@@ -1,6 +1,7 @@
 var fs = require("fs");
 var env = fs.existsSync("./env.js") ? require("./env") : process.env;
 
+var request = require('request');
 var express = require("express");
 var app = express();
 var flash = require("connect-flash");
@@ -31,6 +32,16 @@ app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   next();
 });
+
+app.get('/numlocs', function(req, res){
+  request('http://atlas-shared.herokuapp.com/locations.json', function(err, resp){
+    if (!err) {
+      res.send(`Total Number of Locations: ${JSON.parse(resp.body).length}`);
+    } else {
+      res.send(`Error: ${err}`);
+    }
+  })
+})
 
 app.use(router);
 

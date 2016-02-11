@@ -17,9 +17,8 @@
         location: "=",
         trip: "="
       },
-      link: function(scope){
+      link: function(scope, element){
         var geocoder = new google.maps.Geocoder();
-
         var codeAddress = function() {
           if (scope.trip){
             geocoder.geocode( { 'address': scope.trip.locale}, function(results, status) {
@@ -103,7 +102,14 @@
           });
         }
         scope.update = function(){
+          var place = document.querySelector("#pac-input").value;
+          var lat = document.querySelector("input[name=lat]").value;
+          var lon = document.querySelector("input[name=lon]").value;
+          scope.location.name = place;
+          scope.location.coords = [parseFloat(lat),parseFloat(lon)];
+          console.log(scope.location.coords);
           scope.location.$update({tripId:tripId,id: scope.location._id}, function(response){
+            console.log(response);
             $state.go("tripsShow", {id: tripId}, {reload: true});
           });
         }

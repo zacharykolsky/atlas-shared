@@ -16,19 +16,19 @@
         trip: "="
       },
       link: function(scope, element){
-
-        // scope.trip.locale = element[0].getElementById('pac').value;
-        scope.input = element[0].getElementById('pac');
-        scope.searchBox = new google.maps.places.SearchBox(scope.input);
         if (!scope.trip){
           scope.trip = new TripFactory();
         }
+        scope.input = document.getElementById('pac');
+        scope.searchBox = new google.maps.places.SearchBox(scope.input);
         scope.create = function(){
+          scope.trip.locale = document.getElementById('pac').value;
           scope.trip.$save(function(response){
             $state.go("tripsShow", {id: response._id}, {reload: true});
           });
         }
         scope.update = function(){
+          scope.trip.locale = document.getElementById('pac').value;
           scope.trip.$update({id: scope.trip._id}, function(response){
             $state.go("tripsShow", {id: response._id}, {reload: true});
           });
